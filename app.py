@@ -9,101 +9,91 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
-
-st.set_page_config(page_title="Colour Psychology App", layout="wide")
-
-# Load Data
-df = pd.read_csv('data/color-psychology.csv')
-
-st.title("🎨 Colour Psychology Explorer")
-st.dataframe(df.head())
-
-st.header("🎨 Explore by Colour")
-
-unique_colors = df['color'].unique()
-selected_color = st.selectbox("Pick a colour:", sorted(unique_colors))
-
-filtered = df[df['color'] == selected_color]
-
-st.subheader(f"Emotions linked to {selected_color.capitalize()}")
-
-for _, row in filtered.iterrows():
-    st.markdown(f"""
-    <div style='padding:10px; border:1px solid #ccc; margin-bottom:10px; border-radius:5px'>
-        <b>Emotion:</b> {row['emotion_key']}<br>
-        <b>Importance:</b> {row['importance']}<br>
-        <b>Tone:</b> {row['tone']}<br>
-        <b>Sentiment:</b> {row['sentiment']}
-    </div>
-    """, unsafe_allow_html=True)
-
 import matplotlib.pyplot as plt
 import seaborn as sns
+import webcolors
 
-st.header("📊 Visual Insights")
+# === Load data ===
+@st.cache_data
+def load_data():
+    df = pd.read_csv("data/color-psychology.csv")
+    return df
 
-chart_type = st.radio("Choose a chart:", ["Emotion Frequency", "Sentiment Distribution", "Tone Heatmap"])
+df = load_data()
 
-if chart_type == "Emotion Frequency":
-    top_emotions = df['emotion_key'].value_counts().head(10)
-    st.bar_chart(top_emotions)
-
-elif chart_type == "Sentiment Distribution":
-    st.write("Overall sentiment for all colours")
-    sentiment_counts = df['sentiment'].value_counts()
-    st.bar_chart(sentiment_counts)
-
-elif chart_type == "Tone Heatmap":
-    tone_color = pd.crosstab(df['color'], df['tone'])
-    fig, ax = plt.subplots()
-    sns.heatmap(tone_color, annot=True, cmap="YlGnBu", ax=ax)
-    st.pyplot(fig)
-
-industry_mapping = {
-    "Tech": ["blue", "black"],
-    "Luxury": ["black", "gold", "purple"],
-    "Wellness": ["green", "white", "pink"],
-    "Education": ["blue", "yellow"],
+# === Colour <-> Hex map for your colours ===
+color_hex_map = {
+    "red": "#FF0000",
+    "orange": "#FFA500",
+    "magenta": "#FF00FF",
+    "black": "#000000",
+    "indigo": "#4B0082",
+    "purple": "#800080",
+    "gold": "#FFD700",
+    "pink": "#FFC0CB",
+    "brown": "#A52A2A",
+    "blue": "#0000FF",
+    "silver": "#C0C0C0",
+    "yellow": "#FFFF00",
+    "green": "#008000",
+    "turquoise": "#40E0D0",
+    "white": "#FFFFFF",
+    "grey": "#808080"
 }
 
-st.header("🏢 Industry Colours")
+hex_to_name = {v.lower(): k for k, v in color_hex_map.items()}
 
-industry = st.selectbox("Choose an industry", list(industry_mapping.keys()))
+# === Function to find closest colour name from hex ===
+def closest_color(requested_hex):
+    requested_rgb = webcolors.hex_to_rgb(requested_hex)
+    min_dist = float('inf')
+    closest_name = None
+    for name, hex_val in color_hex_map.items():
+        r, g, b = webcolors.hex_to_rgb(hex_val)
+        dist = (r - requested_rgb[0])**2 + (g - requested_rgb[1])**2 + (b - requested_rgb[2])**2
+        if dist < min_dist:
+            min_dist = dist
+            closest_name = name
+    return closest_name
 
-industry_colors = industry_mapping[industry]
-filtered_industry = df[df['color'].isin(industry_colors)]
+# === Streamlit App Layout ===
+st.title("🎨 Colour Psychology Explorer")
 
-st.write(f"Colours commonly used in {industry}:")
+st.sidebar.header("Pick a Colour")
 
-for color in industry_colors:
-    st.markdown(f"<div style='width:60px;height:30px;background:{color};border:1px solid black'></div>", unsafe_allow_html=True)
+# Colour picker widget with default red
+picked_hex = st.sidebar.color_picker("Select a colour", "#FF0000").lower()
 
-# Show top emotions per colour
-for color in industry_colors:
-    subset = filtered_industry[filtered_industry['color'] == color]
-    st.markdown(f"### {color.capitalize()}")
-    st.dataframe(subset[['emotion_key', 'tone', 'sentiment']])
+# Map picked hex to closest named colour in dataset
+selected_color = hex_to_name.get(picked_hex)
+if not selected_color:
+    selected_color = closest_color(picked_hex)
 
-st.header("✨ Personal Colour Advice")
+st.sidebar.markdown(f"**Closest colour:** {selected_color.capitalize()}")
 
-goal_to_emotions = {
-    "Focus": ["clarity", "concentration"],
-    "Calm": ["peace", "relaxation"],
-    "Creativity": ["imagination", "joy"],
-    "Confidence": ["power", "assertiveness"]
-}
+# Filter dataframe by selected colour
+filtered_df = df[df['color'] == selected_color]
 
-user_goal = st.selectbox("What’s your goal?", list(goal_to_emotions.keys()))
-matched_emotions = goal_to_emotions[user_goal]
+if filtered_df.empty:
+    st.warning("No data available for this colour.")
+else:
+    # Show table of emotions and details
+    st.subheader(f"Emotions and Insights for {selected_color.capitalize()}")
+    st.dataframe(filtered_df[['emotion_text', 'positive', 'tone', 'sentiment', 'importance']])
 
-recommendations = df[df['emotion_key'].isin(matched_emotions) | df['emotion_text'].isin(matched_emotions)]
+    # Plot importance of emotions for selected colour
+    st.subheader("Emotion Importance Bar Chart")
+    plt.figure(figsize=(8, 4))
+    sns.barplot(data=filtered_df, x='importance', y='emotion_text', palette=[picked_hex])
+    plt.xlabel("Importance")
+    plt.ylabel("Emotion")
+    plt.title(f"Emotions associated with {selected_color.capitalize()}")
+    st.pyplot(plt)
 
-st.write(f"Recommended colours for **{user_goal}**:")
-for _, row in recommendations.iterrows():
-    st.markdown(f"""
-    <div style='padding:10px; border-left:5px solid {row["color"]}; margin-bottom:10px'>
-        <b>Colour:</b> {row['color']}<br>
-        <b>Emotion:</b> {row['emotion_key']}<br>
-        <b>Sentiment:</b> {row['sentiment']} | <b>Tone:</b> {row['tone']}
-    </div>
-    """, unsafe_allow_html=True)
+    # Bonus: show how many positive / negative emotions
+    pos_count = filtered_df['positive'].sum()
+    total = len(filtered_df)
+    st.write(f"Positive emotions: {pos_count} / {total}")
+
+st.markdown("---")
+st.write("App powered by Colour Psychology Dataset")
