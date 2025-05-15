@@ -12,115 +12,82 @@ import pandas as pd
 from PIL import Image
 import os
 
-st.set_page_config(page_title="Color Psychology App", layout="wide")
-
-# Load your dataframe - replace with your actual data loading method
+# Load data from data folder
 @st.cache_data
 def load_data():
-    df = pd.read_csv("color_psychology_data.csv")  # Your CSV file path here
-    return df
+    return pd.read_csv("data/color_psychology_data.csv")
 
 df = load_data()
 
-# List of colours in your dataframe
-colors = df['color'].unique()
-colors = sorted(colors)  # alphabetically
-
-# Map colours to hex for swatches (add more if needed)
-color_hex_map = {
-    'red': '#FF0000',
-    'orange': '#FFA500',
-    'magenta': '#FF00FF',
-    'black': '#000000',
-    'indigo': '#4B0082',
-    'purple': '#800080',
-    'gold': '#FFD700',
-    'pink': '#FFC0CB',
-    'brown': '#A52A2A',
-    'blue': '#0000FF',
-    'silver': '#C0C0C0',
-    'yellow': '#FFFF00',
-    'green': '#008000',
-    'turquoise': '#40E0D0',
-    'white': '#FFFFFF',
-    'grey': '#808080'
-}
-
 st.title("🎨 Color Psychology Insights")
 
-# Sidebar colour picker (selectbox from your colours)
-selected_color = st.sidebar.selectbox("Select a colour", options=colors)
+# Unique colors from your dataframe
+colors = df['color'].unique()
 
-# Show wordcloud image for selected colour
-wordcloud_path = f"wordclouds/{selected_color}.png"
-if os.path.exists(wordcloud_path):
-    st.subheader(f"Emotion Wordcloud for {selected_color.capitalize()}")
-    image = Image.open(wordcloud_path)
-    st.image(image, use_column_width=True)
+# Color selector
+selected_color = st.selectbox("Choose a color:", options=sorted(colors))
+
+# Filter dataframe for selected color
+color_df = df[df['color'] == selected_color]
+
+st.header(f"Insights for {selected_color.capitalize()}")
+
+# Display emotions and sentiments
+st.subheader("Emotions and Sentiments")
+for _, row in color_df.iterrows():
+    st.markdown(f"- **{row['emotion_text'].capitalize()}** ({row['tone']}, {row['sentiment']})")
+
+# Display wordcloud image for the selected color
+wc_folder = "wordclouds"
+wc_path = os.path.join(wc_folder, f"{selected_color}.png")
+
+if os.path.exists(wc_path):
+    st.image(wc_path, caption=f"Wordcloud for {selected_color}", use_column_width=True)
 else:
-    st.warning("Wordcloud image not found for this colour.")
+    st.info("Wordcloud image not found for this color.")
 
-# Show related emotions from dataframe
-st.subheader(f"Emotions associated with {selected_color.capitalize()}")
-emotions = df[df['color'] == selected_color][['emotion_text', 'sentiment', 'tone']].drop_duplicates()
-st.dataframe(emotions.reset_index(drop=True))
-
-st.markdown("---")
+# Brand & Industry Applications
 st.header("🏢 Brand & Industry Applications")
-
 business_type = st.selectbox(
-    "Select a business type to see recommended colours:",
-    options=["Tech", "Luxury", "Wellness", "Education", "Retail"]
+    "Select a business type to see recommended colors:",
+    options=["Tech", "Luxury", "Wellness"]
 )
 
-recommendations = {
-    "Tech": ["blue", "grey", "white"],
+# Example recommendations (you can expand this dictionary)
+business_colors = {
+    "Tech": ["blue", "silver", "black"],
     "Luxury": ["gold", "black", "purple"],
     "Wellness": ["green", "turquoise", "white"],
-    "Education": ["yellow", "blue", "orange"],
-    "Retail": ["red", "orange", "yellow"],
 }
 
-recommended_colors = recommendations.get(business_type, [])
+st.markdown(f"Recommended colors for **{business_type}** business:")
+for c in business_colors.get(business_type, []):
+    st.markdown(f"- {c.capitalize()}")
 
-st.write(f"Recommended colours for **{business_type}**:")
-cols_str = ", ".join([c.capitalize() for c in recommended_colors])
-st.write(cols_str)
-
-# Show color swatches
-cols_html = "".join(
-    f'<div style="background-color:{color_hex_map[c]}; width:60px; height:60px; display:inline-block; margin-right:5px; border-radius:8px;"></div>'
-    for c in recommended_colors
-)
-st.markdown(cols_html, unsafe_allow_html=True)
-
-st.markdown("---")
-st.header("✨ Personalized Colour Recommendations")
+# Personalized Recommendations
+st.header("✨ Personalized Recommendations")
 
 goal = st.text_input("Enter your goal (e.g., 'I want to improve focus'):")
 
-energy_level = st.slider("Energy Level", 0, 10, 5)
-relaxation_level = st.slider("Relaxation Level", 0, 10, 5)
+energy_relaxation = st.slider("Refine your choice:", 0, 100, 50, help="Energy (0) vs Relaxation (100)")
 
 if goal:
-    st.write(f"Based on your goal: *{goal}*")
-
-    if energy_level > relaxation_level:
-        suggested = ["red", "orange", "yellow"]  # energetic colours
+    st.markdown(f"### Colors to support: *{goal}*")
+    # Simple logic example: if slider < 50 suggest warm colors else cool colors
+    if energy_relaxation < 50:
+        recommended = ["red", "orange", "magenta"]
     else:
-        suggested = ["blue", "green", "turquoise"]  # relaxing colours
-
-    st.write("Suggested colours:")
-    st.write(", ".join([c.capitalize() for c in suggested]))
-
-    # Show colour swatches
-    swatch_html = "".join(
-        f'<div style="background-color:{color_hex_map[c]}; width:50px; height:50px; display:inline-block; margin-right:5px; border-radius:6px;"></div>'
-        for c in suggested
-    )
-    st.markdown(swatch_html, unsafe_allow_html=True)
-
-    # Supporting insights for suggested colours
-    st.subheader("Supporting Insights")
-    insights = df[df['color'].isin(suggested)][['color', 'emotion_text', 'sentiment', 'tone']].drop_duplicates()
-    st.dataframe(insights.reset_index(drop=True))
+        recommended = ["blue", "green", "turquoise"]
+    st.markdown(", ".join([c.capitalize() for c in recommended]))
+    # Show some supporting insights for each recommended color
+    for c in recommended:
+        c_df = df[df['color'] == c]
+        if not c_df.empty:
+            st.markdown(f"**{c.capitalize()}**:")
+            emotions = ", ".join(c_df['emotion_text'].unique())
+            st.markdown(f"Emotions: {emotions}")
+            tones = ", ".join(c_df['tone'].unique())
+            sentiments = ", ".join(c_df['sentiment'].unique())
+            st.markdown(f"Tone: {tones} | Sentiment: {sentiments}")
+        else:
+            st.markdown(f"No data for {c.capitalize()}.")
