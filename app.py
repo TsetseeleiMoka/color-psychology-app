@@ -9,85 +9,68 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 from PIL import Image
 import os
 
-# Load data from data folder
+# Set page configuration
+st.set_page_config(page_title="Colour Psychology Explorer", layout="wide")
+
+# Load dataset
 @st.cache_data
 def load_data():
-    return pd.read_csv("data/color_psychology_data.csv")
+    return pd.read_csv("color_psychology_data.csv")  # CSV is in same folder as app.py
 
 df = load_data()
 
-st.title("🎨 Color Psychology Insights")
+# App title
+st.title("🎨 Colour Psychology Explorer")
+st.markdown("Explore emotional associations of colours and visualise their psychological impact.")
 
-# Unique colors from your dataframe
-colors = df['color'].unique()
+# Show dataframe
+if st.checkbox("Show raw data"):
+    st.dataframe(df)
 
-# Color selector
-selected_color = st.selectbox("Choose a color:", options=sorted(colors))
+# Section 1: Bar chart of emotions associated with each colour
+st.header("🔍 Most Common Emotions Associated With Colours")
 
-# Filter dataframe for selected color
-color_df = df[df['color'] == selected_color]
+selected_colour = st.selectbox("Choose a colour:", df['color_name'].unique())
 
-st.header(f"Insights for {selected_color.capitalize()}")
+filtered_df = df[df['color_name'] == selected_colour]
+emotion_counts = filtered_df['emotion'].value_counts()
 
-# Display emotions and sentiments
-st.subheader("Emotions and Sentiments")
-for _, row in color_df.iterrows():
-    st.markdown(f"- **{row['emotion_text'].capitalize()}** ({row['tone']}, {row['sentiment']})")
+st.subheader(f"Emotions commonly associated with {selected_colour.capitalize()}:")
+fig, ax = plt.subplots()
+sns.barplot(x=emotion_counts.values, y=emotion_counts.index, palette='pastel', ax=ax)
+ax.set_xlabel("Count")
+ax.set_ylabel("Emotion")
+st.pyplot(fig)
 
-# Display wordcloud image for the selected color
-wc_folder = "wordclouds"
-wc_path = os.path.join(wc_folder, f"{selected_color}.png")
+# Section 2: Display wordcloud if available
+st.header("☁️ Word Cloud of Associated Words")
 
-if os.path.exists(wc_path):
-    st.image(wc_path, caption=f"Wordcloud for {selected_color}", use_column_width=True)
+wordcloud_path = f"wordclouds/{selected_colour.lower()}.png"
+
+if os.path.exists(wordcloud_path):
+    st.image(Image.open(wordcloud_path), caption=f"Words associated with {selected_colour}")
 else:
-    st.info("Wordcloud image not found for this color.")
+    st.warning(f"Wordcloud image for '{selected_colour}' not found.")
 
-# Brand & Industry Applications
-st.header("🏢 Brand & Industry Applications")
-business_type = st.selectbox(
-    "Select a business type to see recommended colors:",
-    options=["Tech", "Luxury", "Wellness"]
-)
+# Section 3: Colour filter + emotion breakdown
+st.header("📊 Explore Colour Associations by Emotion")
 
-# Example recommendations (you can expand this dictionary)
-business_colors = {
-    "Tech": ["blue", "silver", "black"],
-    "Luxury": ["gold", "black", "purple"],
-    "Wellness": ["green", "turquoise", "white"],
-}
+selected_emotion = st.selectbox("Choose an emotion:", df['emotion'].unique())
 
-st.markdown(f"Recommended colors for **{business_type}** business:")
-for c in business_colors.get(business_type, []):
-    st.markdown(f"- {c.capitalize()}")
+emotion_df = df[df['emotion'] == selected_emotion]
+colour_counts = emotion_df['color_name'].value_counts()
 
-# Personalized Recommendations
-st.header("✨ Personalized Recommendations")
+fig2, ax2 = plt.subplots()
+sns.barplot(x=colour_counts.values, y=colour_counts.index, palette='bright', ax=ax2)
+ax2.set_xlabel("Count")
+ax2.set_ylabel("Colour")
+st.pyplot(fig2)
 
-goal = st.text_input("Enter your goal (e.g., 'I want to improve focus'):")
-
-energy_relaxation = st.slider("Refine your choice:", 0, 100, 50, help="Energy (0) vs Relaxation (100)")
-
-if goal:
-    st.markdown(f"### Colors to support: *{goal}*")
-    # Simple logic example: if slider < 50 suggest warm colors else cool colors
-    if energy_relaxation < 50:
-        recommended = ["red", "orange", "magenta"]
-    else:
-        recommended = ["blue", "green", "turquoise"]
-    st.markdown(", ".join([c.capitalize() for c in recommended]))
-    # Show some supporting insights for each recommended color
-    for c in recommended:
-        c_df = df[df['color'] == c]
-        if not c_df.empty:
-            st.markdown(f"**{c.capitalize()}**:")
-            emotions = ", ".join(c_df['emotion_text'].unique())
-            st.markdown(f"Emotions: {emotions}")
-            tones = ", ".join(c_df['tone'].unique())
-            sentiments = ", ".join(c_df['sentiment'].unique())
-            st.markdown(f"Tone: {tones} | Sentiment: {sentiments}")
-        else:
-            st.markdown(f"No data for {c.capitalize()}.")
+# Footer
+st.markdown("---")
+st.caption("Made with 💙 by Moka")
