@@ -30,46 +30,43 @@ hex_to_name = {
 
 available_colours = list(hex_to_name.keys())
 
-# --- Title ---
+# --- Initialize selected colour from query params or session state ---
+def get_initial_colour():
+    params = st.query_params
+    if "color_choice" in params:
+        c = params["color_choice"][0]
+        if c in available_colours:
+            return c
+    return available_colours[0]
+
+selected_colour = st.session_state.get("selected_colour", get_initial_colour())
+
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
 st.subheader("🎨 Pick a Colour")
 
-# Create clickable coloured boxes using HTML and form buttons
-selected_colour = st.session_state.get("selected_colour", available_colours[0])
-
-with st.form("colour_picker_form", clear_on_submit=False):
-    cols = st.columns(8)
-    for i, hex_col in enumerate(available_colours):
-        with cols[i % 8]:
-            st.markdown(
-                f"""
-                <button type="submit" name="color_choice" value="{hex_col}" style="
-                    background-color: {hex_col};
-                    border: 2px solid #00000033;
-                    width: 40px;
-                    height: 40px;
-                    border-radius: 6px;
-                    cursor: pointer;
-                    margin: 2px;
-                " title="{hex_col}"></button>
-                """,
-                unsafe_allow_html=True
-            )
-
-    submitted = st.form_submit_button("Confirm Colour")
-
-    # Get which button was clicked
-    color_choice = st.query_params().get("color_choice", [selected_colour])[0]
-    if submitted and color_choice in available_colours:
-        selected_colour = color_choice
-        st.session_state.selected_colour = selected_colour
+# Display colours as buttons using Streamlit buttons and columns
+cols = st.columns(8)
+for i, hex_col in enumerate(available_colours):
+    with cols[i % 8]:
+        if st.button("", key=hex_col, help=hex_col,
+                     args=None,  # args param is deprecated, ignore
+                     ):
+            selected_colour = hex_col
+            st.session_state.selected_colour = hex_col
+            # Update query params in URL
+            st.experimental_set_query_params(color_choice=hex_col)
+        # Show colour box under button
+        st.markdown(
+            f"<div style='width: 40px; height: 40px; background-color: {hex_col}; border: 1px solid #000; border-radius: 6px; margin-top: -40px; pointer-events:none;'></div>",
+            unsafe_allow_html=True
+        )
 
 st.write(f"Selected colour: `{selected_colour}` ({hex_to_name[selected_colour]})")
 
 st.markdown("---")
 
-# --- Section: Top 5 Most Common Colours ---
+# --- Top 5 Most Common Colours ---
 with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
     st.write("These are the top 5 colours that appear most frequently in the dataset.")
 
@@ -89,7 +86,7 @@ with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
 
 st.markdown("---")
 
-# --- Section: Word Cloud ---
+# --- Word Cloud ---
 with st.expander("☁️ Emotional Word Cloud", expanded=False):
     st.write("Visual representation of emotional words associated with the selected colour.")
     try:
@@ -99,7 +96,7 @@ with st.expander("☁️ Emotional Word Cloud", expanded=False):
 
 st.markdown("---")
 
-# --- Section: About ---
+# --- About ---
 with st.expander("ℹ️ About This Explorer", expanded=False):
     st.write(
         """
@@ -110,7 +107,7 @@ with st.expander("ℹ️ About This Explorer", expanded=False):
 
 st.markdown("---")
 
-# --- Section: Raw Data ---
+# --- Raw Data ---
 with st.expander("🧾 Show Raw Dataset"):
     st.markdown("Preview the raw dataset used for this dashboard.")
     st.dataframe(df)
