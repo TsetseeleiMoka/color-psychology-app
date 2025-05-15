@@ -25,6 +25,24 @@ df = load_data()
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
 
+###
+# Let user pick colour via colour wheel
+selected_hex = st.color_picker("🎨 Pick a colour")
+
+# Try to find the matching colour name from your dataset
+if 'hex' in df.columns:
+    match = df[df['hex'].str.lower() == selected_hex.lower()]
+    if not match.empty:
+        selected_colour = match['color'].iloc[0]
+    else:
+        st.warning("That colour isn't found in the dataset.")
+        selected_colour = None
+else:
+    st.error("No hex values available in the dataset to match your colour.")
+    selected_colour = None
+
+###
+
 # --- Interactive Colour Wheel ---
 st.markdown("### 🎡 Pick a colour using the interactive wheel or the list below")
 colors = df['color'].unique()
@@ -73,47 +91,29 @@ selected_colour = st.radio("Select a colour:", options=colors)
 
 st.markdown("---")
 
-# --- Section: Top 5 Emotions Associated With Selected Colour ---
+# --- Section: Top 5 Most Common Colours in Dataset (Replaces emotion-based pie) ---
+with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
+    st.write("These are the top 5 colours that appear most frequently in the dataset.")
 
-with st.expander("🔍 Top 5 Most Common Emotions Associated With This Colour", expanded=True):
-    st.markdown("Here are the top 5 emotions most commonly linked to your chosen colour, based on how often they appear in the dataset.")
+    # Count how often each colour appears
+    colour_counts = df['color'].value_counts().head(5)
 
-    # Filter data for selected colour
-    filtered = df[df['color'] == selected_colour]
+    # Debugging output
+    st.write("DEBUG: Colour counts")
+    st.dataframe(colour_counts)
 
-    # 🐛 DEBUG: Show number of rows and emotion counts
-    st.write("DEBUG: Filtered rows:", filtered.shape[0])
-    st.write("DEBUG: Emotion counts:", filtered['emotion'].value_counts())
-
-
-    # Get emotion frequency (use 'count' column if available)
-    if 'count' in filtered.columns:
-        emotion_counts = (
-            filtered.groupby('emotion')['count']
-            .sum()
-            .sort_values(ascending=False)
-            .head(5)
-        )
-    else:
-        emotion_counts = filtered['emotion'].value_counts().head(5)
-
-    # Rainbow colour palette for visual clarity
+    # Pie chart with rainbow palette
     rainbow_palette = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF']
-
-    fig_pie = go.Figure(
-        data=[go.Pie(
-            labels=emotion_counts.index,
-            values=emotion_counts.values,
-            marker=dict(colors=rainbow_palette),
-            hoverinfo='label+percent',
-            textinfo='label+value',
-        )]
-    )
-
-    fig_pie.update_layout(margin=dict(t=0, b=0, l=0, r=0))
+    fig_pie = go.Figure(data=[go.Pie(
+        labels=colour_counts.index,
+        values=colour_counts.values,
+        marker=dict(colors=rainbow_palette[:len(colour_counts)]),
+        hoverinfo='label+percent',
+        textinfo='label+value'
+    )])
 
     st.plotly_chart(fig_pie, use_container_width=True)
-    st.caption("📊 Hover over each segment to see its percentage share and emotion.")
+    st.markdown("Hover over the chart segments to see percentages.")
 
 st.markdown("---")
 
