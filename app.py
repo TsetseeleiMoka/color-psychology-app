@@ -81,6 +81,11 @@ with st.expander("🔍 Top 5 Most Common Emotions Associated With This Colour", 
     # Filter data for selected colour
     filtered = df[df['color'] == selected_colour]
 
+    # 🐛 DEBUG: Show number of rows and emotion counts
+    st.write("DEBUG: Filtered rows:", filtered.shape[0])
+    st.write("DEBUG: Emotion counts:", filtered['emotion'].value_counts())
+
+
     # Get emotion frequency (use 'count' column if available)
     if 'count' in filtered.columns:
         emotion_counts = (
