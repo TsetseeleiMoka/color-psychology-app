@@ -12,16 +12,17 @@ import pandas as pd
 import plotly.graph_objs as go
 import os
 
+# --- Page Configuration ---
 st.set_page_config(page_title="🎨 Colour Psychology Explorer", layout="centered")
 
-# --- Load data ---
+# --- Load Data ---
 @st.cache_data
 def load_data():
     return pd.read_csv("color_psychology_data.csv")
 
 df = load_data()
 
-# --- Colour name mapping ---
+# --- Colour Mapping ---
 hex_to_name = {
     '#FF0000': 'Red', '#FFA500': 'Orange', '#FF00FF': 'Magenta', '#000000': 'Black',
     '#4B0082': 'Indigo', '#800080': 'Purple', '#FFD700': 'Gold', '#FFC0CB': 'Pink',
@@ -29,20 +30,20 @@ hex_to_name = {
     '#008000': 'Green', '#40E0D0': 'Turquoise', '#FFFFFF': 'White', '#808080': 'Grey'
 }
 
-available_colours = list(hex_to_name.keys())
+# Use your dataset's 'color' and 'hex' columns
+colors = df['color'].tolist()
+hex_codes = df['hex'].tolist()
+
+# --- Initialize State ---
+if "selected_colour" not in st.session_state:
+    st.session_state.selected_colour = None
 
 # --- Title ---
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
 st.subheader("Pick a Colour!")
 
-# Assuming you already have df loaded with 'color' and 'hex'
-colors = df['color'].tolist()
-hex_codes = df['hex'].tolist()
-
-if "selected_colour" not in st.session_state:
-    st.session_state.selected_colour = None
-
+# --- Colour Picker Buttons ---
 cols = st.columns(len(colors))
 
 for i, (name, hex_code) in enumerate(zip(colors, hex_codes)):
@@ -62,77 +63,68 @@ for i, (name, hex_code) in enumerate(zip(colors, hex_codes)):
 
     cols[i].markdown(f"<div style='{box_style}'></div>", unsafe_allow_html=True)
 
-st.write(f"Selected colour: **{st.session_state.selected_colour}**")
-
-
-# # Create clickable coloured boxes using HTML and form buttons
-# selected_colour = st.session_state.get("selected_colour", available_colours[0])
-
-# with st.form("colour_picker_form", clear_on_submit=False):
-#     cols = st.columns(8)
-#     for i, hex_col in enumerate(available_colours):
-#         with cols[i % 8]:
-#             st.markdown(
-#                 f"""
-#                 <button type="submit" name="color_choice" value="{hex_col}" style="
-#                     background-color: {hex_col};
-#                     border: 2px solid #00000033;
-#                     width: 40px;
-#                     height: 40px;
-#                     border-radius: 6px;
-#                     cursor: pointer;
-#                     margin: 2px;
-#                 " title="{hex_col}"></button>
-#                 """,
-#                 unsafe_allow_html=True
-#             )
-
-#     submitted = st.form_submit_button("Confirm Colour")
-
-#     # Access query parameters correctly
-#     # Note: st.query_params is a dict, so you get list and take first element
-#     color_choice = st.query_params.get("color_choice", [selected_colour])[0]
-#     if submitted and color_choice in available_colours:
-#         selected_colour = color_choice
-#         st.session_state.selected_colour = selected_colour
-
-# st.write(f"Selected colour: `{selected_colour}` ({hex_to_name[selected_colour]})")
-
+# --- Selected Colour Display ---
 if st.session_state.selected_colour:
+    st.write(f"🎯 Selected Colour: **{st.session_state.selected_colour}**")
+
+    # --- Examples in Use ---
     st.markdown("---")
-    st.subheader(f"Examples of {st.session_state.selected_colour} in Use")
+    st.subheader(f"🧪 Examples of {st.session_state.selected_colour} in Use")
 
-    # Three categories with placeholders
-    st.markdown("### Marketing")
+    st.markdown("### 💼 Marketing")
     st.write("wip")
 
-    st.markdown("### Interior Design")
+    st.markdown("### 🏡 Interior Design")
     st.write("wip")
 
-    st.markdown("### Psychology")
+    st.markdown("### 🧠 Psychology")
     st.write("wip")
 
+    # --- Word Cloud Section ---
+    st.markdown("---")
+    st.subheader("☁️ Emotional Word Cloud")
+    with st.expander("Visual representation of emotional words associated with the selected colour.", expanded=True):
+        # Match selected colour to hex and image file
+        selected_name = st.session_state.selected_colour
+        try:
+            selected_hex = df[df['color'] == selected_name]['hex'].iloc[0]
+            colour_name = hex_to_name.get(selected_hex, selected_name).lower()
+            img_path = f"wordclouds/{colour_name}.png"
+
+            if os.path.isfile(img_path):
+                st.image(img_path, caption=f"Word cloud for {selected_name}")
+            else:
+                st.write("⚠️ Word cloud image not found for this colour.")
+        except:
+            st.write("⚠️ Error loading word cloud.")
+
+# --- Top 5 Most Common Colours ---
 st.markdown("---")
+st.subheader("🔍 Top 5 Most Common Colours in Dataset")
+st.write("These are the top 5 colours that appear most frequently in the dataset.")
 
+colour_counts = df['hex'].value_counts().head(5)
+named_labels = [hex_to_name.get(hex_code, hex_code) for hex_code in colour_counts.index]
 
-######
+fig_pie = go.Figure(data=[go.Pie(
+    labels=named_labels,
+    values=colour_counts.values,
+    marker=dict(colors=colour_counts.index),
+    hoverinfo='label+percent',
+    textinfo='label+value'
+)])
 
-# --- Section: Word Cloud ---
-st.subheader("☁️ Emotional Word Cloud")
+st.plotly_chart(fig_pie, use_container_width=True)
+st.markdown("Hover over the chart segments to see percentages.")
 
-with st.expander("Visual representation of emotional words associated with the selected colour.", expanded=True):
-
-    colour_name = hex_to_name[selected_colour].lower()  # e.g., 'red', 'blue'
-    img_path = f"wordclouds/{colour_name}.png"
-
-    if os.path.isfile(img_path):
-        st.image(img_path, caption=f"Word cloud for {hex_to_name[selected_colour]}")
-    else:
-        st.write("Word cloud image not found for this colour.")
-
+# --- Raw Dataset ---
 st.markdown("---")
+with st.expander("🧾 Show Raw Dataset"):
+    st.markdown("Preview the raw dataset used for this dashboard.")
+    st.dataframe(df)
 
-# --- Section: About ---
+# --- About Section ---
+st.markdown("---")
 with st.expander("ℹ️ About This Explorer", expanded=False):
     st.write(
         """
@@ -140,34 +132,6 @@ with st.expander("ℹ️ About This Explorer", expanded=False):
         Select a colour to discover its top associated emotions and see visual word clouds representing these associations.
         """
     )
-
-st.markdown("---")
-
-
-# --- Section: Top 5 Most Common Colours ---
-with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
-    st.write("These are the top 5 colours that appear most frequently in the dataset.")
-
-    colour_counts = df['hex'].value_counts().head(5)
-    named_labels = [hex_to_name.get(hex_code, hex_code) for hex_code in colour_counts.index]
-
-    fig_pie = go.Figure(data=[go.Pie(
-        labels=named_labels,
-        values=colour_counts.values,
-        marker=dict(colors=colour_counts.index),
-        hoverinfo='label+percent',
-        textinfo='label+value'
-    )])
-
-    st.plotly_chart(fig_pie, use_container_width=True)
-    st.markdown("Hover over the chart segments to see percentages.")
-
-st.markdown("---")
-
-# --- Section: Raw Data ---
-with st.expander("🧾 Show Raw Dataset"):
-    st.markdown("Preview the raw dataset used for this dashboard.")
-    st.dataframe(df)
 
 # --- Footer ---
 st.markdown("---")
