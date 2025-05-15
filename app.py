@@ -23,6 +23,7 @@ def load_data():
     return pd.read_csv("color_psychology_data.csv")  # CSV is in same folder as app.py
 
 df = load_data()
+st.write("Available columns:", df.columns.tolist())
 
 # App title
 st.title("🎨 Colour Psychology Explorer")
@@ -35,9 +36,9 @@ if st.checkbox("Show raw data"):
 # Section 1: Bar chart of emotions associated with each colour
 st.header("🔍 Most Common Emotions Associated With Colours")
 
-selected_colour = st.selectbox("Choose a colour:", df['color_name'].unique())
+selected_colour = st.selectbox("Choose a colour:", df['color'].unique())
 
-filtered_df = df[df['color_name'] == selected_colour]
+filtered_df = df[df['color'] == selected_colour]
 emotion_counts = filtered_df['emotion'].value_counts()
 
 st.subheader(f"Emotions commonly associated with {selected_colour.capitalize()}:")
@@ -63,7 +64,7 @@ st.header("📊 Explore Colour Associations by Emotion")
 selected_emotion = st.selectbox("Choose an emotion:", df['emotion'].unique())
 
 emotion_df = df[df['emotion'] == selected_emotion]
-colour_counts = emotion_df['color_name'].value_counts()
+colour_counts = emotion_df['color'].value_counts()
 
 fig2, ax2 = plt.subplots()
 sns.barplot(x=colour_counts.values, y=colour_counts.index, palette='bright', ax=ax2)

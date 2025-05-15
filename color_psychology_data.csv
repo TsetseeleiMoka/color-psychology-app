@@ -1,633 +1,633 @@
-emotion_key,emotion_text,positive,color,importance,id,tone,sentiment
-active,need for action/active,True,red,2,0,warm,Positive
-attention-getting,attention-getting,True,red,1,1,warm,Neutral
-assertive,assertive,True,red,1,2,warm,Positive
-energising_and_stimulating,energising and stimulating,True,red,2,3,warm,Positive
-energising_and_stimulating,energising and stimulating,True,orange,1,3,warm,Positive
-energising_and_stimulating,energising and stimulating,True,magenta,0,3,warm,Positive
-exciting,exciting,True,red,1,4,warm,Positive
-powerful,powerful,True,red,0,5,warm,Positive
-powerful,powerful,True,black,1,5,neutral,Positive
-powerful,powerful,True,indigo,0,5,cool,Positive
-powerful,powerful,True,purple,0,5,cool,Positive
-powerful,powerful,True,magenta,0,5,warm,Positive
-passionate,passionate,True,red,2,6,warm,Positive
-passionate,passionate,True,gold,0,6,warm,Positive
-passionate,passionate,True,pink,0,6,warm,Positive
-passionate,passionate,True,magenta,0,6,warm,Positive
-courageous,courageous,True,red,0,7,warm,Positive
-courageous,courageous,True,orange,1,7,warm,Positive
-strong,strong,True,red,0,8,warm,Positive
-strong,strong,True,brown,0,8,neutral,Positive
-strong,strong,True,black,0,8,neutral,Positive
-strong,strong,True,purple,0,8,cool,Positive
-spontaneous,spontaneous,True,red,0,9,warm,Positive
-spontaneous,spontaneous,True,magenta,0,9,warm,Positive
-determined,determined,True,red,0,10,warm,Positive
-determined,determined,True,blue,0,10,cool,Positive
-determined,determined,True,silver,0,10,cool,Positive
-aggressive,aggressive,False,red,1,11,warm,Negative
-domineering,domineering,False,red,0,12,warm,Negative
-domineering,domineering,False,magenta,0,12,warm,Negative
-over-bearing,over-bearing,False,red,0,13,warm,Negative
-over-bearing,over-bearing,False,orange,0,13,warm,Negative
-tiring,tiring,False,red,0,14,warm,Negative
-angry_and_quick-tempered,angry and quick-tempered,False,red,0,15,warm,Negative
-ruthless,ruthless,False,red,0,16,warm,Negative
-fearful,fearful,False,red,0,17,warm,Negative
-fearful,fearful,False,indigo,0,17,cool,Negative
-fearful,fearful,False,black,0,17,neutral,Negative
-intolerant,intolerant,False,red,0,18,warm,Negative
-intolerant,intolerant,False,indigo,0,18,cool,Negative
-intolerant,intolerant,False,magenta,0,18,warm,Negative
-rebellious_and_obstinate,rebellious and obstinate,False,red,0,19,warm,Negative
-resentful,resentful,False,red,0,20,warm,Negative
-violent_and_brutal,violent and brutal,False,red,0,21,warm,Negative
-sexual_and_lust,sexual and lust,True,red,0,22,warm,Neutral
-sociable,sociable,True,orange,2,23,warm,Positive
-optimistic,optimistic,True,orange,0,24,warm,Positive
-optimistic,optimistic,True,yellow,0,24,warm,Positive
-optimistic,optimistic,True,gold,0,24,warm,Positive
-optimistic,optimistic,True,green,0,24,cool,Positive
-optimistic,optimistic,True,magenta,0,24,warm,Positive
-optimistic,optimistic,True,silver,0,24,cool,Positive
-enthusiastic,enthusiastic,True,orange,1,25,warm,Positive
-enthusiastic,enthusiastic,True,yellow,0,25,warm,Positive
-cheerful,cheerful,True,orange,0,26,warm,Positive
-cheerful,cheerful,True,yellow,0,26,warm,Positive
-cheerful,cheerful,True,magenta,0,26,warm,Positive
-confident,confident,True,red,0,27,warm,Positive
-confident,confident,True,orange,0,27,warm,Positive
-confident,confident,True,yellow,0,27,warm,Positive
-confident,confident,True,green,0,27,cool,Positive
-confident,confident,True,blue,0,27,cool,Positive
-confident,confident,True,turquoise,0,27,cool,Positive
-confident,confident,True,brown,0,27,neutral,Positive
-confident,confident,True,gold,0,27,warm,Positive
-confident,confident,True,black,0,27,neutral,Positive
-independent,independent,True,orange,0,28,warm,Positive
-independent,independent,True,purple,0,28,cool,Positive
-independent,independent,True,white,0,28,neutral,Positive
-independent,independent,True,black,0,28,neutral,Positive
-flamboyant,flamboyant,True,orange,0,29,warm,Positive
-extroverted_and_uninhibited,extroverted and uninhibited,True,orange,0,30,warm,Positive
-adventurous,adventurous,True,orange,2,31,warm,Positive
-risk-taking,risk-taking,True,orange,1,32,warm,Neutral
-creative,creative,True,orange,0,33,warm,Positive
-creative,creative,True,yellow,1,33,warm,Positive
-creative,creative,True,purple,0,33,cool,Positive
-creative,creative,True,turquoise,0,33,cool,Positive
-creative,creative,True,magenta,0,33,warm,Positive
-creative,creative,True,indigo,0,33,cool,Positive
-creative,creative,True,white,0,33,neutral,Positive
-warm-hearted,warm-hearted,True,orange,0,34,warm,Positive
-agreeable,agreeable,True,orange,0,35,warm,Positive
-agreeable,agreeable,True,green,1,35,cool,Positive
-informal,informal,True,orange,0,36,warm,Positive
-superficial_and_insincere,superficial and insincere,False,orange,0,37,warm,Negative
-superficial_and_insincere,superficial and insincere,False,silver,0,37,cool,Negative
-dependent,dependent,False,orange,0,38,warm,Neutral
-self-indulgent,self-indulgent,False,orange,0,39,warm,Negative
-exhibitionist,exhibitionist,False,orange,0,40,warm,Negative
-pessimistic,pessimistic,False,orange,0,41,warm,Negative
-pessimistic,pessimistic,False,yellow,0,41,warm,Negative
-pessimistic,pessimistic,False,black,1,41,neutral,Negative
-inexpensive,inexpensive,False,orange,0,42,warm,Positive
-overly_proud,overly proud,False,orange,0,43,warm,Negative
-fun,fun,True,yellow,1,44,warm,Positive
-good-humored,good-humored,True,yellow,0,45,warm,Positive
-original,original,True,yellow,0,46,warm,Neutral
-original,original,True,purple,0,46,cool,Neutral
-challenging,challenging,True,yellow,0,47,warm,Neutral
-academic_and_analytical,academic and analytical,True,yellow,0,48,warm,Neutral
-wise,wise,True,yellow,0,49,warm,Positive
-wise,wise,True,silver,0,49,cool,Positive
-wise,wise,True,gold,0,49,warm,Positive
-wise,wise,True,blue,1,49,cool,Positive
-wise,wise,True,indigo,1,49,cool,Positive
-wise,wise,True,purple,0,49,cool,Positive
-logical,logical,True,yellow,0,50,warm,Neutral
-critical,critical,False,yellow,1,51,warm,Negative
-critical,critical,False,white,0,51,neutral,Negative
-judgmental,judgmental,False,yellow,0,52,warm,Negative
-judgmental,judgmental,False,indigo,0,52,cool,Negative
-judgmental,judgmental,False,green,0,52,cool,Negative
-overly_analytical,overly analytical,False,yellow,0,53,warm,Negative
-impatient,impatient,False,yellow,0,54,warm,Negative
-impatient,impatient,False,magenta,0,54,warm,Negative
-impulsive,impulsive,False,yellow,0,55,warm,Negative
-impulsive,impulsive,False,magenta,0,55,warm,Negative
-egotistical,egotistical,False,yellow,0,56,warm,Negative
-egotistical,egotistical,False,gold,0,56,warm,Negative
-inferiority_complex,inferiority complex,False,yellow,0,57,warm,Negative
-spiteful,spiteful,False,yellow,0,58,warm,Negative
-cowardly,cowardly,False,yellow,0,59,warm,Negative
-deceitful,deceitful,False,yellow,0,60,warm,Negative
-non-emotional,non-emotional,False,yellow,1,61,warm,Negative
-non-emotional,non-emotional,False,grey,1,61,neutral,Negative
-non-emotional,non-emotional,False,turquoise,1,61,cool,Negative
-lacking_compassion,lacking compassion,False,yellow,0,62,warm,Negative
-growth,growth,True,green,2,63,cool,Positive
-growth,growth,True,turquoise,0,63,cool,Positive
-growth,growth,True,white,0,63,neutral,Positive
-renewal_and_restoration,renewal and restoration,True,green,0,64,cool,Positive
-reliable_and_responsible,reliable and responsible,True,green,0,65,cool,Positive
-reliable_and_responsible,reliable and responsible,True,blue,2,65,cool,Positive
-reliable_and_responsible,reliable and responsible,True,indigo,0,65,cool,Positive
-reliable_and_responsible,reliable and responsible,True,brown,0,65,neutral,Positive
-reliable_and_responsible,reliable and responsible,True,silver,1,65,cool,Positive
-reliable_and_responsible,reliable and responsible,True,grey,0,65,neutral,Positive
-tactful,tactful,True,green,0,66,cool,Positive
-tactful,tactful,True,blue,0,66,cool,Positive
-calm,calm,True,green,0,67,cool,Positive
-calm,calm,True,blue,1,67,cool,Positive
-calm,calm,True,turquoise,1,67,cool,Positive
-calm,calm,True,pink,1,67,warm,Positive
-calm,calm,True,grey,0,67,neutral,Positive
-calm,calm,True,silver,1,67,cool,Positive
-calm,calm,True,magenta,0,67,warm,Positive
-calm,calm,True,brown,0,67,neutral,Positive
-calm,calm,True,white,0,67,neutral,Positive
-nature_lover,nature lover,True,green,0,68,cool,Positive
-practical,practical,True,green,0,69,cool,Positive
-practical,practical,True,magenta,0,69,warm,Positive
-practical,practical,True,brown,0,69,neutral,Positive
-practical,practical,True,grey,0,69,neutral,Positive
-down_to_earth,down to earth,True,green,0,70,cool,Positive
-down_to_earth,down to earth,True,brown,0,70,neutral,Positive
-sympathetic,sympathetic,True,green,0,71,cool,Positive
-caring_and_nurturing,caring and nurturing,True,green,1,72,cool,Positive
-caring_and_nurturing,caring and nurturing,True,blue,0,72,cool,Positive
-caring_and_nurturing,caring and nurturing,True,pink,2,72,warm,Positive
-caring_and_nurturing,caring and nurturing,True,turquoise,0,72,cool,Positive
-caring_and_nurturing,caring and nurturing,True,magenta,0,72,warm,Positive
-generous,generous,True,green,0,73,cool,Positive
-generous,generous,True,gold,1,73,warm,Positive
-kind,kind,True,green,0,74,cool,Positive
-kind,kind,True,magenta,0,74,warm,Positive
-kind,kind,True,pink,0,74,warm,Positive
-loyal,loyal,True,green,0,75,cool,Positive
-loyal,loyal,True,blue,0,75,cool,Positive
-loyal,loyal,True,brown,0,75,neutral,Positive
-adaptable,adaptable,True,green,0,76,cool,Positive
-need_to_belong,need to belong,True,green,0,77,cool,Neutral
-possessive_and_materialistic,possessive and materialistic,False,green,1,78,cool,Negative
-possessive_and_materialistic,possessive and materialistic,False,brown,2,78,neutral,Negative
-indifferent,indifferent,False,green,0,79,cool,Neutral
-indifferent,indifferent,False,grey,0,79,neutral,Neutral
-over-cautious,over-cautious,False,green,0,80,cool,Negative
-over-cautious,over-cautious,False,pink,0,80,warm,Negative
-over-cautious,over-cautious,False,white,0,80,neutral,Negative
-envious,envious,False,green,1,81,cool,Negative
-selfish,selfish,False,green,0,82,cool,Negative
-selfish,selfish,False,gold,0,82,warm,Negative
-greedy,greedy,False,green,0,83,cool,Negative
-devious_with_money,devious with money,False,green,0,84,cool,Negative
-inconsiderate,inconsiderate,False,green,0,85,cool,Negative
-inexperienced,inexperienced,False,green,0,86,cool,Negative
-inexperienced,inexperienced,False,pink,0,86,warm,Negative
-trustworthy,trustworthy,True,blue,2,87,cool,Positive
-trustworthy,trustworthy,True,brown,0,87,neutral,Positive
-conservative,conservative,True,blue,1,88,cool,Negative
-conservative,conservative,True,grey,0,88,neutral,Negative
-idealistic,idealistic,True,blue,0,89,cool,Positive
-idealistic,idealistic,True,indigo,1,89,cool,Positive
-idealistic,idealistic,True,turquoise,0,89,cool,Positive
-orderly,orderly,True,blue,1,90,cool,Positive
-orderly,orderly,True,indigo,1,90,cool,Positive
-authority,authority,True,blue,1,91,cool,Neutral
-authority,authority,True,black,0,91,neutral,Neutral
-rigid,rigid,False,blue,1,92,cool,Negative
-rigid,rigid,False,silver,0,92,cool,Negative
-deceitful_and_spiteful,deceitful and spiteful,False,blue,0,93,cool,Negative
-depressed_and_sad,depressed and sad,False,blue,0,94,cool,Negative
-depressed_and_sad,depressed and sad,False,indigo,0,94,cool,Negative
-depressed_and_sad,depressed and sad,False,grey,1,94,neutral,Negative
-depressed_and_sad,depressed and sad,False,black,1,94,neutral,Negative
-depressed_and_sad,depressed and sad,False,purple,0,94,cool,Negative
-depressed_and_sad,depressed and sad,False,magenta,0,94,warm,Negative
-too_passive,too passive,False,blue,0,95,cool,Negative
-self-righteous,self-righteous,False,blue,0,96,cool,Negative
-self-righteous,self-righteous,False,indigo,0,96,cool,Negative
-self-righteous,self-righteous,False,gold,0,96,warm,Negative
-superstitious,superstitious,False,blue,0,97,cool,Negative
-emotionally_unstable,emotionally unstable,False,blue,0,98,cool,Negative
-too_conservative_and_old-fashioned,too conservative and old-fashioned,False,blue,0,99,cool,Negative
-too_conservative_and_old-fashioned,too conservative and old-fashioned,False,black,0,99,neutral,Negative
-predictable,predictable,True,blue,1,100,cool,Neutral
-predictable,predictable,True,brown,0,100,neutral,Neutral
-weak,weak,False,blue,0,101,cool,Negative
-unforgiving,unforgiving,False,blue,0,102,cool,Negative
-aloof_and_frigid,aloof and frigid,False,blue,0,103,cool,Negative
-aloof_and_frigid,aloof and frigid,False,purple,0,103,cool,Negative
-aloof_and_frigid,aloof and frigid,False,turquoise,0,103,cool,Negative
-aloof_and_frigid,aloof and frigid,False,black,1,103,neutral,Negative
-manipulative,manipulative,False,blue,0,104,cool,Negative
-unfaithfulness,unfaithfulness,False,blue,0,105,cool,Negative
-integrity,integrity,True,indigo,1,106,cool,Positive
-integrity,integrity,True,blue,0,106,cool,Positive
-integrity,integrity,True,purple,0,106,cool,Positive
-sincere,sincere/sincerity,True,indigo,0,107,cool,Positive
-sincere,sincere/sincerity,True,brown,0,107,neutral,Positive
-sincere,sincere/sincerity,True,blue,0,107,cool,Positive
-structure,structure,True,indigo,1,108,cool,Neutral
-structure,structure,True,brown,1,108,neutral,Neutral
-regulations,regulations,True,indigo,0,109,cool,Neutral
-obedient,obedient,True,indigo,0,110,cool,Neutral
-intuition,intuition/intuitive,True,indigo,2,111,cool,Neutral
-intuition,intuition/intuitive,True,purple,0,111,cool,Neutral
-intuition,intuition/intuitive,True,turquoise,0,111,cool,Neutral
-intuition,intuition/intuitive,True,pink,0,111,warm,Neutral
-intuition,intuition/intuitive,True,magenta,0,111,warm,Neutral
-faithful,faithful,True,indigo,0,112,cool,Positive
-selfless,selfless,True,indigo,0,113,cool,Positive
-selfless,selfless,True,purple,0,113,cool,Positive
-fanatical,fanatical,False,indigo,0,114,cool,Negative
-impractical,impractical,False,indigo,0,115,cool,Negative
-impractical,impractical,False,purple,1,115,cool,Negative
-conformity,conformity,False,indigo,1,116,cool,Neutral
-addictive,addiction invoking/addictive,False,indigo,1,117,cool,Negative
-bigoted,bigoted,False,indigo,0,118,cool,Negative
-avoiding_conflict,avoiding conflict,False,indigo,0,119,cool,Neutral
-psychic,psychic,True,purple,0,120,cool,Neutral
-humanitarian,humanitarian,True,purple,0,121,cool,Positive
-unlimited,unlimited,True,purple,0,122,cool,Positive
-mysterious,mysterious,True,purple,0,123,cool,Neutral
-mysterious,mysterious,True,black,2,123,neutral,Neutral
-mysterious,mysterious,True,silver,0,123,cool,Neutral
-fantasy,fantasy,True,purple,0,124,cool,Positive
-future_state_of_mind,future state of mind/dreams,True,purple,0,125,cool,Neutral
-futuristic,futuristic,True,white,1,126,neutral,Neutral
-immature,immature,False,purple,1,127,cool,Negative
-immature,immature,False,pink,1,127,warm,Negative
-cynical,cynical,False,purple,1,128,cool,Negative
-pompous_and_arrogant,pompous and arrogant,False,purple,0,129,cool,Negative
-pompous_and_arrogant,pompous and arrogant,False,magenta,0,129,warm,Negative
-fraudulent_and_corrupt,fraudulent and corrupt,False,purple,0,130,cool,Negative
-delusions_of_grandeur,delusions of grandeur,False,purple,0,131,cool,Negative
-communicative,communicative,True,turquoise,2,132,cool,Positive
-communicative,communicative,True,orange,2,132,warm,Positive
-communicative,communicative,True,yellow,1,132,warm,Positive
-communicative,communicative,True,blue,1,132,cool,Positive
-clarity_of_thought,clarity of thought,True,turquoise,2,133,cool,Positive
-clarity_of_thought,clarity of thought,True,yellow,0,133,warm,Positive
-clarity_of_thought,clarity of thought,True,green,0,133,cool,Positive
-emotional_balance_and_harmony,emotional balance and harmony,True,turquoise,0,134,cool,Positive
-emotional_balance_and_harmony,emotional balance and harmony,True,magenta,2,134,warm,Positive
-emotional_balance_and_harmony,emotional balance and harmony,True,green,2,134,cool,Positive
-emotional_balance_and_harmony,emotional balance and harmony,True,purple,0,134,cool,Positive
-compassion_and_understanding,compassion and understanding,True,turquoise,0,135,cool,Positive
-compassion_and_understanding,compassion and understanding,True,pink,1,135,warm,Positive
-compassion_and_understanding,compassion and understanding,True,magenta,1,135,warm,Positive
-compassion_and_understanding,compassion and understanding,True,gold,1,135,warm,Positive
-compassion_and_understanding,compassion and understanding,True,silver,0,135,cool,Positive
-healing,healing,True,turquoise,0,136,cool,Positive
-self-sufficient,self-sufficient,True,turquoise,1,137,cool,Positive
-self-sufficient,self-sufficient,True,white,0,137,neutral,Positive
-boastful,boastful,False,turquoise,0,138,cool,Negative
-secretive,secretive,True,turquoise,0,139,cool,Negative
-secretive,secretive,True,black,0,139,neutral,Negative
-unreliable,unreliable,False,turquoise,0,140,cool,Negative
-reticent,reticent,False,turquoise,0,141,cool,Negative
-fence-sitter,fence-sitter,False,turquoise,0,142,cool,Negative
-fence-sitter,fence-sitter,False,grey,0,142,neutral,Negative
-deceptive,deceptive,False,turquoise,0,143,cool,Negative
-deceptive,deceptive,False,silver,0,143,cool,Negative
-love,love,True,pink,2,144,warm,Positive
-love,love,True,red,0,144,warm,Positive
-love,love,True,magenta,0,144,warm,Positive
-love,love,True,gold,0,144,warm,Positive
-love,love,True,purple,0,144,cool,Positive
-romantic,romantic,True,pink,0,145,warm,Positive
-romantic,romantic,True,red,0,145,warm,Positive
-warm,warm,True,pink,0,146,warm,Positive
-warm,warm,True,brown,0,146,neutral,Positive
-warm,warm,True,red,0,146,warm,Positive
-warm,warm,True,orange,0,146,warm,Positive
-warm,warm,True,gold,0,146,warm,Positive
-hopeful,hopeful,True,pink,1,147,warm,Positive
-hopeful,hopeful,True,yellow,0,147,warm,Positive
-hopeful,hopeful,True,green,1,147,cool,Positive
-hopeful,hopeful,True,white,0,147,neutral,Positive
-sweet,sweet,True,pink,0,148,warm,Positive
-feminine,feminine,True,pink,0,149,warm,Neutral
-feminine,feminine,True,silver,1,149,cool,Neutral
-physically_weak,physically weak,False,pink,0,150,warm,Negative
-over-emotional,over-emotional,False,pink,0,151,warm,Negative
-over-emotional,over-emotional,False,turquoise,0,151,cool,Negative
-emotional_neediness,emotional neediness,False,pink,0,152,warm,Negative
-unrealistic_expectations,unrealistic expectations,False,pink,0,153,warm,Negative
-naive,naive,False,pink,0,154,warm,Negative
-girlish,girlish,False,pink,0,155,warm,Neutral
-lack_of_will_power,lack of will power,False,pink,0,156,warm,Negative
-lack_of_self_worth,lack of self worth,False,pink,0,157,warm,Negative
-helps_the_spirit_soar,helps the spirit soar,True,magenta,0,158,warm,Positive
-spiritual,spiritual,True,magenta,0,159,warm,Positive
-spiritual,spiritual,True,blue,0,159,cool,Positive
-spiritual,spiritual,True,purple,2,159,cool,Positive
-spiritual,spiritual,True,turquoise,0,159,cool,Positive
-spiritual,spiritual,True,gold,0,159,warm,Positive
-common_sense,encourages common sense,True,magenta,0,160,warm,Neutral
-supportive,supportive,True,magenta,0,161,warm,Positive
-supportive,supportive,True,brown,0,161,neutral,Positive
-imaginative,imaginative,True,magenta,0,162,warm,Positive
-innovative,innovative,True,magenta,0,163,warm,Positive
-artistic,artistic,True,magenta,0,164,warm,Positive
-non-conformist,non-conformist,True,magenta,1,165,warm,Neutral
-negotiator,negotiator,True,magenta,0,166,warm,Positive
-avoids_challenges,avoids challenges,False,magenta,0,167,warm,Negative
-disconnected_to_others,disconnected to others,False,magenta,0,168,warm,Negative
-bossy,bossy,False,magenta,0,169,warm,Negative
-demanding,demanding,False,magenta,0,170,warm,Negative
-demanding,demanding,False,gold,0,170,warm,Negative
-wholesome,wholesome,True,brown,1,171,neutral,Positive
-approachable,approachable,True,brown,0,172,neutral,Positive
-friendly,friendly,True,brown,0,173,neutral,Positive
-friendly,friendly,True,green,0,173,cool,Positive
-friendly,friendly,True,turquoise,0,173,cool,Positive
-friendly,friendly,True,orange,1,173,warm,Positive
-stable,stable,True,brown,1,174,neutral,Neutral
-stable,stable,True,grey,0,174,neutral,Neutral
-stable,stable,True,green,0,174,cool,Neutral
-stable,stable,True,purple,0,174,cool,Neutral
-comforting,comforting,True,brown,1,175,neutral,Positive
-comforting,comforting,True,black,0,175,neutral,Positive
-comforting,comforting,True,pink,0,175,warm,Positive
-comforting,comforting,True,white,0,175,neutral,Positive
-protective,protective,True,brown,2,176,neutral,Positive
-protective,protective,True,black,2,176,neutral,Positive
-protective,protective,True,white,0,176,neutral,Positive
-sensual,sensual,True,brown,0,177,neutral,Positive
-sensitive,sensitive,True,brown,0,178,neutral,Neutral
-sensitive,sensitive,True,purple,0,178,cool,Neutral
-sensitive,sensitive,True,turquoise,0,178,cool,Neutral
-sensitive,sensitive,True,pink,0,178,warm,Neutral
-sensitive,sensitive,True,silver,0,178,cool,Neutral
-reassured,reassured,True,brown,0,179,neutral,Positive
-honest,honest,True,brown,0,180,neutral,Positive
-honest,honest,True,blue,1,180,cool,Positive
-quality,quality,True,brown,0,181,neutral,Positive
-quality,quality,True,gold,0,181,warm,Positive
-dull,dull,False,brown,0,182,neutral,Negative
-dull,dull,False,silver,0,182,cool,Negative
-dull,dull,False,gold,0,182,warm,Negative
-boring,boring,False,brown,0,183,neutral,Negative
-boring,boring,False,grey,0,183,neutral,Negative
-boring,boring,False,white,0,183,neutral,Negative
-frugal,frugal,False,brown,0,184,neutral,Negative
-lack_of_humor,lack of humor,False,brown,0,185,neutral,Negative
-unsophisticated,unsophisticated/lack of sophistication,False,brown,0,186,neutral,Negative
-cheap_and_stingy,cheap and stingy,False,brown,0,187,neutral,Negative
-dignified,dignified,True,grey,0,188,neutral,Positive
-dignified,dignified,True,silver,1,188,cool,Positive
-dignified,dignified,True,indigo,0,188,cool,Positive
-dignified,dignified,True,purple,1,188,cool,Positive
-dignified,dignified,True,black,1,188,neutral,Positive
-neutral,neutral,True,grey,1,189,neutral,Neutral
-neutral,neutral,True,silver,0,189,cool,Neutral
-neutral,neutral,True,white,0,189,neutral,Neutral
-impartial,impartial,True,grey,0,190,neutral,Neutral
-impartial,impartial,True,white,1,190,neutral,Neutral
-professional,professional,True,grey,1,191,neutral,Neutral
-professional,professional,True,blue,2,191,cool,Neutral
-professional,professional,True,black,0,191,neutral,Neutral
-professional,professional,True,brown,0,191,neutral,Neutral
-mature,mature,True,grey,0,192,neutral,Neutral
-mature,mature,True,brown,0,192,neutral,Neutral
-mature,mature,True,silver,0,192,cool,Neutral
-intelligent,intelligent,True,grey,0,193,neutral,Positive
-intelligent,intelligent,True,yellow,2,193,warm,Positive
-intelligent,intelligent,True,blue,0,193,cool,Positive
-classic,classic,True,grey,0,194,neutral,Neutral
-solid,solid,True,grey,0,195,neutral,Neutral
-solid,solid,True,brown,0,195,neutral,Neutral
-subdued,subdued,False,grey,0,196,neutral,Negative
-reserved,reserved,True,grey,0,197,neutral,Neutral
-reserved,reserved,True,blue,0,197,cool,Neutral
-elegant,elegant,True,grey,0,198,neutral,Positive
-elegant,elegant,True,gold,0,198,warm,Positive
-elegant,elegant,True,black,0,198,neutral,Positive
-formal,formal,True,grey,0,199,neutral,Neutral
-formal,formal,True,black,1,199,neutral,Neutral
-dependable,dependable,True,grey,0,200,neutral,Neutral
-dependable,dependable,True,green,1,200,cool,Neutral
-dependable,dependable,True,brown,0,200,neutral,Neutral
-indecisive,indecisive,False,grey,2,201,neutral,Neutral
-indecisive,indecisive,False,silver,0,201,cool,Neutral
-lifeless,lifeless,False,grey,0,202,neutral,Negative
-lifeless,lifeless,False,silver,1,202,cool,Negative
-lonely,lonely,False,grey,0,203,neutral,Negative
-lonely,lonely,False,silver,0,203,cool,Negative
-isolated,isolated,False,grey,0,204,neutral,Negative
-isolated,isolated,False,white,0,204,neutral,Negative
-illuminative,illuminative,True,silver,1,205,cool,Neutral
-illuminative,illuminative,True,yellow,0,205,warm,Neutral
-reflective,reflective/reflect on a change or self,True,silver,1,206,cool,Neutral
-reflective,reflective/reflect on a change or self,True,white,0,206,neutral,Neutral
-soothing,soothing,True,silver,1,207,cool,Positive
-glamorous,glamorous,True,silver,0,208,cool,Positive
-self_control,self control,True,silver,0,209,cool,Neutral
-self_control,self control,True,black,0,209,neutral,Neutral
-organised,organised,True,silver,0,210,cool,Neutral
-insightful,insightful,True,silver,0,211,cool,Neutral
-insightful,insightful,True,green,0,211,cool,Neutral
-insightful,insightful,True,blue,0,211,cool,Neutral
-insightful,insightful,True,pink,0,211,warm,Neutral
-modern,modern,True,silver,0,212,cool,Neutral
-sleek,sleek,True,silver,0,213,cool,Neutral
-hi-tech,hi-tech,True,silver,0,214,cool,Neutral
-hi-tech,hi-tech,True,blue,0,214,cool,Neutral
-scientific,scientific,True,silver,0,215,cool,Neutral
-melancholy,melancholy,False,silver,0,216,cool,Negative
-colorless,colorless,False,silver,0,217,cool,Negative
-negative,negative,False,silver,0,218,cool,Negative
-negative,negative,False,black,0,218,neutral,Negative
-successful,successful,True,gold,2,219,warm,Positive
-abundant,abundant,True,gold,0,220,warm,Positive
-wealthy,wealthy,True,gold,2,221,warm,Positive
-wealthy,wealthy,True,green,0,221,cool,Positive
-wealthy,wealthy,True,purple,0,221,cool,Positive
-wealthy,wealthy,True,brown,2,221,neutral,Positive
-wealthy,wealthy,True,silver,1,221,cool,Positive
-self-worth,self-worth,True,gold,0,222,warm,Positive
-charismatic,charismatic,True,gold,0,223,warm,Positive
-winning,winning,True,gold,0,224,warm,Positive
-positive,positive,True,gold,0,225,warm,Positive
-positive,positive,True,red,0,225,warm,Positive
-positive,positive,True,green,0,225,cool,Positive
-positive,positive,True,pink,0,225,warm,Positive
-masculine,masculine,True,gold,0,226,warm,Neutral
-masculine,masculine,True,red,0,226,warm,Neutral
-fear_of_failure,fear of failure,False,gold,0,227,warm,Negative
-fear_of_losing_wealth,fear of losing wealth,False,gold,0,228,warm,Negative
-self-centred,self-centred,False,gold,0,229,warm,Negative
-self-centred,self-centred,False,turquoise,0,229,cool,Negative
-mean_spirited,mean spirited,False,gold,0,230,warm,Negative
-untrustful,lack of trust/untrustful,False,gold,0,231,warm,Negative
-false,false,False,gold,0,232,warm,Negative
-innocent,innocent,True,white,2,233,neutral,Positive
-innocent,innocent,True,pink,0,233,warm,Positive
-pure,pure,True,white,2,234,neutral,Positive
-pure,pure,True,pink,0,234,warm,Positive
-pure,pure,True,silver,0,234,cool,Positive
-cleanliness,cleanliness,True,white,0,235,neutral,Positive
-equality,equality,True,white,1,236,neutral,Positive
-complete_and_whole,complete and whole,True,white,2,237,neutral,Positive
-complete_and_whole,complete and whole,True,pink,0,237,warm,Positive
-simple,simple,True,white,0,238,neutral,Neutral
-simple,simple,True,brown,0,238,neutral,Neutral
-immaculate_and_neat,immaculate and neat,True,white,0,239,neutral,Positive
-pristine,pristine,True,white,0,240,neutral,Positive
-open,open,True,white,0,241,neutral,Neutral
-open,open,True,pink,0,241,warm,Neutral
-new_beginnings,new beginnings,True,white,1,242,neutral,Positive
-sterile,sterile,False,white,0,243,neutral,Neutral
-stark,stark,False,white,0,244,neutral,Negative
-fastidious,fastidious,False,white,0,245,neutral,Neutral
-empty,empty,False,white,0,246,neutral,Negative
-plain,plain,False,white,0,247,neutral,Negative
-distant,distant,False,white,0,248,neutral,Negative
-unimaginative,unimaginative,False,white,0,249,neutral,Negative
-contained,contained,True,black,0,250,neutral,Positive
-sophisticated,sophisticated,True,black,1,251,neutral,Positive
-sophisticated,sophisticated,True,silver,0,251,cool,Positive
-sophisticated,sophisticated,True,gold,0,251,warm,Positive
-sexy_and_seductive,sexy and seductive,True,black,0,252,neutral,Positive
-sexy_and_seductive,sexy and seductive,True,red,0,252,warm,Positive
-withholding,withholding,False,black,0,253,neutral,Negative
-serious,serious,True,black,0,254,neutral,Neutral
-serious,serious,True,brown,0,254,neutral,Neutral
-control,control,True,black,1,255,neutral,Neutral
-control,control,True,grey,1,255,neutral,Neutral
-strong_will,strong will,True,red,0,256,warm,Positive
-strong_will,strong will,True,black,0,256,neutral,Positive
-appetite,"stimulates the appetite, food craving",True,red,0,257,warm,Positive
-appetite,"stimulates the appetite, food craving",True,orange,0,257,warm,Positive
-physical_desires,physical desires,True,red,1,258,warm,Positive
-motivating,motivating,True,red,1,259,warm,Positive
-happy,happy,True,orange,0,260,warm,Positive
-happy,happy,True,yellow,1,260,warm,Positive
-happy,happy,True,turquoise,0,260,cool,Positive
-happy,happy,True,magenta,0,260,warm,Positive
-emotionally_strong,emotionally strong,True,orange,0,261,warm,Positive
-uplifting,uplifting,True,yellow,0,262,warm,Positive
-uplifting,uplifting,True,turquoise,0,262,cool,Positive
-uplifting,uplifting,True,magenta,0,262,warm,Positive
-anxious,anxiety producing/anxious,False,yellow,1,263,warm,Negative
-anxious,anxiety producing/anxious,False,magenta,0,263,warm,Negative
-highly_visible,highly visible,True,yellow,0,264,warm,Neutral
-quick_decisions,quick decisions,True,yellow,1,265,warm,Neutral
-quick_decisions,quick decisions,True,turquoise,0,265,cool,Neutral
-relaxing,relaxing/removes stress,True,green,0,266,cool,Positive
-relaxing,relaxing/removes stress,True,blue,0,266,cool,Positive
-peace,peace,True,green,0,267,cool,Positive
-peace,peace,True,blue,1,267,cool,Positive
-peace,peace,True,turquoise,0,267,cool,Positive
-peace,peace,True,magenta,0,267,warm,Positive
-peace,peace,True,white,0,267,neutral,Positive
-finance,finance,True,green,0,268,cool,Neutral
-secure,secure,True,blue,0,269,cool,Neutral
-secure,secure,True,brown,2,269,neutral,Neutral
-truthful,truthful/speaking the truth,True,blue,0,270,cool,Neutral
-devotion,devotion,True,blue,0,271,cool,Positive
-devotion,devotion,True,indigo,0,271,cool,Positive
-safe_and_non-threatening,safe and non-threatening,True,blue,0,272,cool,Positive
-safe_and_non-threatening,safe and non-threatening,True,pink,1,272,warm,Positive
-safe_and_non-threatening,safe and non-threatening,True,grey,0,272,neutral,Positive
-inflexible,inflexible/not flexible,False,blue,0,273,cool,Negative
-inflexible,inflexible/not flexible,False,indigo,0,273,cool,Negative
-nostalgic,nostalgic,True,blue,0,274,cool,Neutral
-religious,religious,True,blue,1,275,cool,Neutral
-religious,religious,True,indigo,0,275,cool,Neutral
-perceptive,perceptive,True,indigo,2,276,cool,Neutral
-perceptive,perceptive,True,turquoise,0,276,cool,Neutral
-concentration,concentration,True,indigo,0,277,cool,Neutral
-justice,justice,True,indigo,0,278,cool,Neutral
-justice,justice,True,silver,0,278,cool,Neutral
-fair,fair,True,indigo,0,279,cool,Neutral
-fair,fair,True,white,0,279,neutral,Neutral
-law,law and peoples rights,True,indigo,0,280,cool,Neutral
-traditions_and_rituals,traditions and rituals,True,indigo,0,281,cool,Neutral
-dramatic,dramatic,True,indigo,1,282,cool,Neutral
-narrow-minded,narrow-minded,False,indigo,0,283,cool,Negative
-introspective,introspective,True,indigo,1,284,cool,Neutral
-introspective,introspective,True,purple,0,284,cool,Neutral
-imagination,imagination,True,purple,2,285,cool,Positive
-peace_of_mind,peace of mind,True,purple,0,286,cool,Positive
-unique_and_individual,likes to be unique and individual,True,purple,1,287,cool,Positive
-noble,nobel/royal,True,purple,0,288,cool,Positive
-noble,nobel/royal,True,gold,0,288,warm,Positive
-luxurious,luxurious,True,gold,1,289,warm,Positive
-luxurious,luxurious,True,purple,0,289,cool,Positive
-demands_respect,demands respect,True,purple,1,290,cool,Negative
-demands_respect,demands respect,True,pink,0,290,warm,Negative
-ambitious,ambitious,True,purple,0,291,cool,Positive
-self-assured,self-assured,True,purple,0,292,cool,Positive
-inspiring,inspiring/inspirative,True,purple,1,293,cool,Positive
-inspiring,inspiring/inspirative,True,magenta,1,293,warm,Positive
-empathic,empathic,True,purple,1,294,cool,Positive
-empathic,empathic,True,turquoise,0,294,cool,Positive
-empathic,empathic,True,pink,0,294,warm,Positive
-clear_thinking,clear thinking,True,turquoise,0,295,cool,Positive
-clear_thinking,clear thinking,True,yellow,0,295,warm,Positive
-self_esteem,builds self esteem,True,turquoise,0,296,cool,Positive
-observation,observation,True,turquoise,0,297,cool,Neutral
-discriminatory,discriminatory,False,turquoise,0,298,cool,Negative
-intimate,intimate,True,pink,0,299,warm,Positive
-removes_angriness_and_aggression,removes angriness and aggression,True,pink,0,300,warm,Positive
-silly,silly,False,pink,0,301,warm,Negative
-affectionate,affectionate,True,pink,1,302,warm,Positive
-cooperative,cooperative,True,magenta,0,303,warm,Positive
-self-respect,self-respect,True,magenta,0,304,warm,Positive
-self-respect,self-respect,True,orange,0,304,warm,Positive
-overwhelming,overwhelming,False,magenta,0,305,warm,Negative
-irritates,irritates,False,magenta,0,306,warm,Negative
-change_and_transformation,change and transformation,True,magenta,1,307,warm,Neutral
-family_and_friends,family and friends,True,green,0,308,cool,Positive
-family_and_friends,family and friends,True,pink,0,308,warm,Positive
-family_and_friends,family and friends,True,brown,0,308,neutral,Positive
-genuine,genuine,True,brown,0,309,neutral,Positive
-natural_and_organic,natural and organic,True,brown,1,310,neutral,Positive
-agriculture_and_farming,agriculture and farming,True,brown,0,311,neutral,Neutral
-quiet,quiet,True,grey,0,312,neutral,Neutral
-emotional,emotional,True,silver,0,313,cool,Neutral
-emotional_control,emotional control,True,purple,1,314,cool,Positive
-emotional_control,emotional control,True,turquoise,1,314,cool,Positive
-conventional,conventional,True,black,0,315,neutral,Neutral
-conventional,conventional,True,grey,0,315,neutral,Neutral
-compromise,compromise,True,grey,2,316,neutral,Neutral
-detached,detached,False,white,0,317,neutral,Negative
-detached,detached,False,grey,2,317,neutral,Negative
-respectable,respectable,True,silver,0,318,cool,Positive
-respectable,respectable,True,purple,1,318,cool,Positive
-patient,patient,True,silver,0,319,cool,Positive
-non-committal,non-committal,False,silver,0,320,cool,Neutral
-achievement,achievement,True,gold,0,321,warm,Positive
-status,status,True,gold,2,322,warm,Neutral
-triumph,triumph,True,gold,0,323,warm,Positive
-prosperity,prosperity,True,gold,0,324,warm,Positive
-prestige,prestige,True,gold,1,325,warm,Positive
-prestige,prestige,True,silver,1,325,cool,Positive
-value,value/valuable,True,gold,0,326,warm,Positive
-knowledge,knowledge,True,yellow,0,327,warm,Neutral
-knowledge,knowledge,True,gold,0,327,warm,Neutral
-knowledge,knowledge,True,magenta,0,327,warm,Neutral
-win,win/winner,True,gold,0,328,warm,Positive
-lacking_kindness,lacking kindness,False,gold,0,329,warm,Negative
-lacking_generosity,lacking generosity,False,gold,0,330,warm,Negative
-enlightenment,enlightenment,True,gold,1,331,warm,Positive
-disinterested,disinterested,False,white,0,332,neutral,Negative
-efficient,efficient,True,white,1,333,neutral,Positive
-intimidating,intimidating,False,black,0,334,neutral,Negative
-unfriendly,unfriendly,False,black,0,335,neutral,Negative
-unapproachable,unapproachable,False,black,0,336,neutral,Negative
-disciplined,disciplined,True,black,0,337,neutral,Positive
-mind,mind,True,yellow,2,338,warm,Neutral
-rejuvenating,rejuvenating,True,yellow,1,339,warm,Positive
-rejuvenating,rejuvenating,True,green,1,339,cool,Positive
-diplomatic,diplomatic,True,green,1,340,cool,Positive
-higher_mind,higher mind,True,indigo,2,341,cool,Positive
-higher_mind,higher mind,True,purple,0,341,cool,Positive
-higher_mind,higher mind,True,blue,0,341,cool,Positive
-rescuer,rescuer,True,white,1,342,neutral,Positive
-unity,unity,True,white,1,343,neutral,Positive
+emotion,color,correlation,tone,sentiment
+active,red,2,warm,Positive
+attention-getting,red,1,warm,Neutral
+assertive,red,1,warm,Positive
+energising_and_stimulating,red,2,warm,Positive
+energising_and_stimulating,orange,1,warm,Positive
+energising_and_stimulating,magenta,0,warm,Positive
+exciting,red,1,warm,Positive
+powerful,red,0,warm,Positive
+powerful,black,1,neutral,Positive
+powerful,indigo,0,cool,Positive
+powerful,purple,0,cool,Positive
+powerful,magenta,0,warm,Positive
+passionate,red,2,warm,Positive
+passionate,gold,0,warm,Positive
+passionate,pink,0,warm,Positive
+passionate,magenta,0,warm,Positive
+courageous,red,0,warm,Positive
+courageous,orange,1,warm,Positive
+strong,red,0,warm,Positive
+strong,brown,0,neutral,Positive
+strong,black,0,neutral,Positive
+strong,purple,0,cool,Positive
+spontaneous,red,0,warm,Positive
+spontaneous,magenta,0,warm,Positive
+determined,red,0,warm,Positive
+determined,blue,0,cool,Positive
+determined,silver,0,cool,Positive
+aggressive,red,1,warm,Negative
+domineering,red,0,warm,Negative
+domineering,magenta,0,warm,Negative
+over-bearing,red,0,warm,Negative
+over-bearing,orange,0,warm,Negative
+tiring,red,0,warm,Negative
+angry_and_quick-tempered,red,0,warm,Negative
+ruthless,red,0,warm,Negative
+fearful,red,0,warm,Negative
+fearful,indigo,0,cool,Negative
+fearful,black,0,neutral,Negative
+intolerant,red,0,warm,Negative
+intolerant,indigo,0,cool,Negative
+intolerant,magenta,0,warm,Negative
+rebellious_and_obstinate,red,0,warm,Negative
+resentful,red,0,warm,Negative
+violent_and_brutal,red,0,warm,Negative
+sexual_and_lust,red,0,warm,Neutral
+sociable,orange,2,warm,Positive
+optimistic,orange,0,warm,Positive
+optimistic,yellow,0,warm,Positive
+optimistic,gold,0,warm,Positive
+optimistic,green,0,cool,Positive
+optimistic,magenta,0,warm,Positive
+optimistic,silver,0,cool,Positive
+enthusiastic,orange,1,warm,Positive
+enthusiastic,yellow,0,warm,Positive
+cheerful,orange,0,warm,Positive
+cheerful,yellow,0,warm,Positive
+cheerful,magenta,0,warm,Positive
+confident,red,0,warm,Positive
+confident,orange,0,warm,Positive
+confident,yellow,0,warm,Positive
+confident,green,0,cool,Positive
+confident,blue,0,cool,Positive
+confident,turquoise,0,cool,Positive
+confident,brown,0,neutral,Positive
+confident,gold,0,warm,Positive
+confident,black,0,neutral,Positive
+independent,orange,0,warm,Positive
+independent,purple,0,cool,Positive
+independent,white,0,neutral,Positive
+independent,black,0,neutral,Positive
+flamboyant,orange,0,warm,Positive
+extroverted_and_uninhibited,orange,0,warm,Positive
+adventurous,orange,2,warm,Positive
+risk-taking,orange,1,warm,Neutral
+creative,orange,0,warm,Positive
+creative,yellow,1,warm,Positive
+creative,purple,0,cool,Positive
+creative,turquoise,0,cool,Positive
+creative,magenta,0,warm,Positive
+creative,indigo,0,cool,Positive
+creative,white,0,neutral,Positive
+warm-hearted,orange,0,warm,Positive
+agreeable,orange,0,warm,Positive
+agreeable,green,1,cool,Positive
+informal,orange,0,warm,Positive
+superficial_and_insincere,orange,0,warm,Negative
+superficial_and_insincere,silver,0,cool,Negative
+dependent,orange,0,warm,Neutral
+self-indulgent,orange,0,warm,Negative
+exhibitionist,orange,0,warm,Negative
+pessimistic,orange,0,warm,Negative
+pessimistic,yellow,0,warm,Negative
+pessimistic,black,1,neutral,Negative
+inexpensive,orange,0,warm,Positive
+overly_proud,orange,0,warm,Negative
+fun,yellow,1,warm,Positive
+good-humored,yellow,0,warm,Positive
+original,yellow,0,warm,Neutral
+original,purple,0,cool,Neutral
+challenging,yellow,0,warm,Neutral
+academic_and_analytical,yellow,0,warm,Neutral
+wise,yellow,0,warm,Positive
+wise,silver,0,cool,Positive
+wise,gold,0,warm,Positive
+wise,blue,1,cool,Positive
+wise,indigo,1,cool,Positive
+wise,purple,0,cool,Positive
+logical,yellow,0,warm,Neutral
+critical,yellow,1,warm,Negative
+critical,white,0,neutral,Negative
+judgmental,yellow,0,warm,Negative
+judgmental,indigo,0,cool,Negative
+judgmental,green,0,cool,Negative
+overly_analytical,yellow,0,warm,Negative
+impatient,yellow,0,warm,Negative
+impatient,magenta,0,warm,Negative
+impulsive,yellow,0,warm,Negative
+impulsive,magenta,0,warm,Negative
+egotistical,yellow,0,warm,Negative
+egotistical,gold,0,warm,Negative
+inferiority_complex,yellow,0,warm,Negative
+spiteful,yellow,0,warm,Negative
+cowardly,yellow,0,warm,Negative
+deceitful,yellow,0,warm,Negative
+non-emotional,yellow,1,warm,Negative
+non-emotional,grey,1,neutral,Negative
+non-emotional,turquoise,1,cool,Negative
+lacking_compassion,yellow,0,warm,Negative
+growth,green,2,cool,Positive
+growth,turquoise,0,cool,Positive
+growth,white,0,neutral,Positive
+renewal_and_restoration,green,0,cool,Positive
+reliable_and_responsible,green,0,cool,Positive
+reliable_and_responsible,blue,2,cool,Positive
+reliable_and_responsible,indigo,0,cool,Positive
+reliable_and_responsible,brown,0,neutral,Positive
+reliable_and_responsible,silver,1,cool,Positive
+reliable_and_responsible,grey,0,neutral,Positive
+tactful,green,0,cool,Positive
+tactful,blue,0,cool,Positive
+calm,green,0,cool,Positive
+calm,blue,1,cool,Positive
+calm,turquoise,1,cool,Positive
+calm,pink,1,warm,Positive
+calm,grey,0,neutral,Positive
+calm,silver,1,cool,Positive
+calm,magenta,0,warm,Positive
+calm,brown,0,neutral,Positive
+calm,white,0,neutral,Positive
+nature_lover,green,0,cool,Positive
+practical,green,0,cool,Positive
+practical,magenta,0,warm,Positive
+practical,brown,0,neutral,Positive
+practical,grey,0,neutral,Positive
+down_to_earth,green,0,cool,Positive
+down_to_earth,brown,0,neutral,Positive
+sympathetic,green,0,cool,Positive
+caring_and_nurturing,green,1,cool,Positive
+caring_and_nurturing,blue,0,cool,Positive
+caring_and_nurturing,pink,2,warm,Positive
+caring_and_nurturing,turquoise,0,cool,Positive
+caring_and_nurturing,magenta,0,warm,Positive
+generous,green,0,cool,Positive
+generous,gold,1,warm,Positive
+kind,green,0,cool,Positive
+kind,magenta,0,warm,Positive
+kind,pink,0,warm,Positive
+loyal,green,0,cool,Positive
+loyal,blue,0,cool,Positive
+loyal,brown,0,neutral,Positive
+adaptable,green,0,cool,Positive
+need_to_belong,green,0,cool,Neutral
+possessive_and_materialistic,green,1,cool,Negative
+possessive_and_materialistic,brown,2,neutral,Negative
+indifferent,green,0,cool,Neutral
+indifferent,grey,0,neutral,Neutral
+over-cautious,green,0,cool,Negative
+over-cautious,pink,0,warm,Negative
+over-cautious,white,0,neutral,Negative
+envious,green,1,cool,Negative
+selfish,green,0,cool,Negative
+selfish,gold,0,warm,Negative
+greedy,green,0,cool,Negative
+devious_with_money,green,0,cool,Negative
+inconsiderate,green,0,cool,Negative
+inexperienced,green,0,cool,Negative
+inexperienced,pink,0,warm,Negative
+trustworthy,blue,2,cool,Positive
+trustworthy,brown,0,neutral,Positive
+conservative,blue,1,cool,Negative
+conservative,grey,0,neutral,Negative
+idealistic,blue,0,cool,Positive
+idealistic,indigo,1,cool,Positive
+idealistic,turquoise,0,cool,Positive
+orderly,blue,1,cool,Positive
+orderly,indigo,1,cool,Positive
+authority,blue,1,cool,Neutral
+authority,black,0,neutral,Neutral
+rigid,blue,1,cool,Negative
+rigid,silver,0,cool,Negative
+deceitful_and_spiteful,blue,0,cool,Negative
+depressed_and_sad,blue,0,cool,Negative
+depressed_and_sad,indigo,0,cool,Negative
+depressed_and_sad,grey,1,neutral,Negative
+depressed_and_sad,black,1,neutral,Negative
+depressed_and_sad,purple,0,cool,Negative
+depressed_and_sad,magenta,0,warm,Negative
+too_passive,blue,0,cool,Negative
+self-righteous,blue,0,cool,Negative
+self-righteous,indigo,0,cool,Negative
+self-righteous,gold,0,warm,Negative
+superstitious,blue,0,cool,Negative
+emotionally_unstable,blue,0,cool,Negative
+too_conservative_and_old-fashioned,blue,0,cool,Negative
+too_conservative_and_old-fashioned,black,0,neutral,Negative
+predictable,blue,1,cool,Neutral
+predictable,brown,0,neutral,Neutral
+weak,blue,0,cool,Negative
+unforgiving,blue,0,cool,Negative
+aloof_and_frigid,blue,0,cool,Negative
+aloof_and_frigid,purple,0,cool,Negative
+aloof_and_frigid,turquoise,0,cool,Negative
+aloof_and_frigid,black,1,neutral,Negative
+manipulative,blue,0,cool,Negative
+unfaithfulness,blue,0,cool,Negative
+integrity,indigo,1,cool,Positive
+integrity,blue,0,cool,Positive
+integrity,purple,0,cool,Positive
+sincere,indigo,0,cool,Positive
+sincere,brown,0,neutral,Positive
+sincere,blue,0,cool,Positive
+structure,indigo,1,cool,Neutral
+structure,brown,1,neutral,Neutral
+regulations,indigo,0,cool,Neutral
+obedient,indigo,0,cool,Neutral
+intuition,indigo,2,cool,Neutral
+intuition,purple,0,cool,Neutral
+intuition,turquoise,0,cool,Neutral
+intuition,pink,0,warm,Neutral
+intuition,magenta,0,warm,Neutral
+faithful,indigo,0,cool,Positive
+selfless,indigo,0,cool,Positive
+selfless,purple,0,cool,Positive
+fanatical,indigo,0,cool,Negative
+impractical,indigo,0,cool,Negative
+impractical,purple,1,cool,Negative
+conformity,indigo,1,cool,Neutral
+addictive,indigo,1,cool,Negative
+bigoted,indigo,0,cool,Negative
+avoiding_conflict,indigo,0,cool,Neutral
+psychic,purple,0,cool,Neutral
+humanitarian,purple,0,cool,Positive
+unlimited,purple,0,cool,Positive
+mysterious,purple,0,cool,Neutral
+mysterious,black,2,neutral,Neutral
+mysterious,silver,0,cool,Neutral
+fantasy,purple,0,cool,Positive
+future_state_of_mind,purple,0,cool,Neutral
+futuristic,white,1,neutral,Neutral
+immature,purple,1,cool,Negative
+immature,pink,1,warm,Negative
+cynical,purple,1,cool,Negative
+pompous_and_arrogant,purple,0,cool,Negative
+pompous_and_arrogant,magenta,0,warm,Negative
+fraudulent_and_corrupt,purple,0,cool,Negative
+delusions_of_grandeur,purple,0,cool,Negative
+communicative,turquoise,2,cool,Positive
+communicative,orange,2,warm,Positive
+communicative,yellow,1,warm,Positive
+communicative,blue,1,cool,Positive
+clarity_of_thought,turquoise,2,cool,Positive
+clarity_of_thought,yellow,0,warm,Positive
+clarity_of_thought,green,0,cool,Positive
+emotional_balance_and_harmony,turquoise,0,cool,Positive
+emotional_balance_and_harmony,magenta,2,warm,Positive
+emotional_balance_and_harmony,green,2,cool,Positive
+emotional_balance_and_harmony,purple,0,cool,Positive
+compassion_and_understanding,turquoise,0,cool,Positive
+compassion_and_understanding,pink,1,warm,Positive
+compassion_and_understanding,magenta,1,warm,Positive
+compassion_and_understanding,gold,1,warm,Positive
+compassion_and_understanding,silver,0,cool,Positive
+healing,turquoise,0,cool,Positive
+self-sufficient,turquoise,1,cool,Positive
+self-sufficient,white,0,neutral,Positive
+boastful,turquoise,0,cool,Negative
+secretive,turquoise,0,cool,Negative
+secretive,black,0,neutral,Negative
+unreliable,turquoise,0,cool,Negative
+reticent,turquoise,0,cool,Negative
+fence-sitter,turquoise,0,cool,Negative
+fence-sitter,grey,0,neutral,Negative
+deceptive,turquoise,0,cool,Negative
+deceptive,silver,0,cool,Negative
+love,pink,2,warm,Positive
+love,red,0,warm,Positive
+love,magenta,0,warm,Positive
+love,gold,0,warm,Positive
+love,purple,0,cool,Positive
+romantic,pink,0,warm,Positive
+romantic,red,0,warm,Positive
+warm,pink,0,warm,Positive
+warm,brown,0,neutral,Positive
+warm,red,0,warm,Positive
+warm,orange,0,warm,Positive
+warm,gold,0,warm,Positive
+hopeful,pink,1,warm,Positive
+hopeful,yellow,0,warm,Positive
+hopeful,green,1,cool,Positive
+hopeful,white,0,neutral,Positive
+sweet,pink,0,warm,Positive
+feminine,pink,0,warm,Neutral
+feminine,silver,1,cool,Neutral
+physically_weak,pink,0,warm,Negative
+over-emotional,pink,0,warm,Negative
+over-emotional,turquoise,0,cool,Negative
+emotional_neediness,pink,0,warm,Negative
+unrealistic_expectations,pink,0,warm,Negative
+naive,pink,0,warm,Negative
+girlish,pink,0,warm,Neutral
+lack_of_will_power,pink,0,warm,Negative
+lack_of_self_worth,pink,0,warm,Negative
+helps_the_spirit_soar,magenta,0,warm,Positive
+spiritual,magenta,0,warm,Positive
+spiritual,blue,0,cool,Positive
+spiritual,purple,2,cool,Positive
+spiritual,turquoise,0,cool,Positive
+spiritual,gold,0,warm,Positive
+common_sense,magenta,0,warm,Neutral
+supportive,magenta,0,warm,Positive
+supportive,brown,0,neutral,Positive
+imaginative,magenta,0,warm,Positive
+innovative,magenta,0,warm,Positive
+artistic,magenta,0,warm,Positive
+non-conformist,magenta,1,warm,Neutral
+negotiator,magenta,0,warm,Positive
+avoids_challenges,magenta,0,warm,Negative
+disconnected_to_others,magenta,0,warm,Negative
+bossy,magenta,0,warm,Negative
+demanding,magenta,0,warm,Negative
+demanding,gold,0,warm,Negative
+wholesome,brown,1,neutral,Positive
+approachable,brown,0,neutral,Positive
+friendly,brown,0,neutral,Positive
+friendly,green,0,cool,Positive
+friendly,turquoise,0,cool,Positive
+friendly,orange,1,warm,Positive
+stable,brown,1,neutral,Neutral
+stable,grey,0,neutral,Neutral
+stable,green,0,cool,Neutral
+stable,purple,0,cool,Neutral
+comforting,brown,1,neutral,Positive
+comforting,black,0,neutral,Positive
+comforting,pink,0,warm,Positive
+comforting,white,0,neutral,Positive
+protective,brown,2,neutral,Positive
+protective,black,2,neutral,Positive
+protective,white,0,neutral,Positive
+sensual,brown,0,neutral,Positive
+sensitive,brown,0,neutral,Neutral
+sensitive,purple,0,cool,Neutral
+sensitive,turquoise,0,cool,Neutral
+sensitive,pink,0,warm,Neutral
+sensitive,silver,0,cool,Neutral
+reassured,brown,0,neutral,Positive
+honest,brown,0,neutral,Positive
+honest,blue,1,cool,Positive
+quality,brown,0,neutral,Positive
+quality,gold,0,warm,Positive
+dull,brown,0,neutral,Negative
+dull,silver,0,cool,Negative
+dull,gold,0,warm,Negative
+boring,brown,0,neutral,Negative
+boring,grey,0,neutral,Negative
+boring,white,0,neutral,Negative
+frugal,brown,0,neutral,Negative
+lack_of_humor,brown,0,neutral,Negative
+unsophisticated,brown,0,neutral,Negative
+cheap_and_stingy,brown,0,neutral,Negative
+dignified,grey,0,neutral,Positive
+dignified,silver,1,cool,Positive
+dignified,indigo,0,cool,Positive
+dignified,purple,1,cool,Positive
+dignified,black,1,neutral,Positive
+neutral,grey,1,neutral,Neutral
+neutral,silver,0,cool,Neutral
+neutral,white,0,neutral,Neutral
+impartial,grey,0,neutral,Neutral
+impartial,white,1,neutral,Neutral
+professional,grey,1,neutral,Neutral
+professional,blue,2,cool,Neutral
+professional,black,0,neutral,Neutral
+professional,brown,0,neutral,Neutral
+mature,grey,0,neutral,Neutral
+mature,brown,0,neutral,Neutral
+mature,silver,0,cool,Neutral
+intelligent,grey,0,neutral,Positive
+intelligent,yellow,2,warm,Positive
+intelligent,blue,0,cool,Positive
+classic,grey,0,neutral,Neutral
+solid,grey,0,neutral,Neutral
+solid,brown,0,neutral,Neutral
+subdued,grey,0,neutral,Negative
+reserved,grey,0,neutral,Neutral
+reserved,blue,0,cool,Neutral
+elegant,grey,0,neutral,Positive
+elegant,gold,0,warm,Positive
+elegant,black,0,neutral,Positive
+formal,grey,0,neutral,Neutral
+formal,black,1,neutral,Neutral
+dependable,grey,0,neutral,Neutral
+dependable,green,1,cool,Neutral
+dependable,brown,0,neutral,Neutral
+indecisive,grey,2,neutral,Neutral
+indecisive,silver,0,cool,Neutral
+lifeless,grey,0,neutral,Negative
+lifeless,silver,1,cool,Negative
+lonely,grey,0,neutral,Negative
+lonely,silver,0,cool,Negative
+isolated,grey,0,neutral,Negative
+isolated,white,0,neutral,Negative
+illuminative,silver,1,cool,Neutral
+illuminative,yellow,0,warm,Neutral
+reflective,silver,1,cool,Neutral
+reflective,white,0,neutral,Neutral
+soothing,silver,1,cool,Positive
+glamorous,silver,0,cool,Positive
+self_control,silver,0,cool,Neutral
+self_control,black,0,neutral,Neutral
+organised,silver,0,cool,Neutral
+insightful,silver,0,cool,Neutral
+insightful,green,0,cool,Neutral
+insightful,blue,0,cool,Neutral
+insightful,pink,0,warm,Neutral
+modern,silver,0,cool,Neutral
+sleek,silver,0,cool,Neutral
+hi-tech,silver,0,cool,Neutral
+hi-tech,blue,0,cool,Neutral
+scientific,silver,0,cool,Neutral
+melancholy,silver,0,cool,Negative
+colorless,silver,0,cool,Negative
+negative,silver,0,cool,Negative
+negative,black,0,neutral,Negative
+successful,gold,2,warm,Positive
+abundant,gold,0,warm,Positive
+wealthy,gold,2,warm,Positive
+wealthy,green,0,cool,Positive
+wealthy,purple,0,cool,Positive
+wealthy,brown,2,neutral,Positive
+wealthy,silver,1,cool,Positive
+self-worth,gold,0,warm,Positive
+charismatic,gold,0,warm,Positive
+winning,gold,0,warm,Positive
+positive,gold,0,warm,Positive
+positive,red,0,warm,Positive
+positive,green,0,cool,Positive
+positive,pink,0,warm,Positive
+masculine,gold,0,warm,Neutral
+masculine,red,0,warm,Neutral
+fear_of_failure,gold,0,warm,Negative
+fear_of_losing_wealth,gold,0,warm,Negative
+self-centred,gold,0,warm,Negative
+self-centred,turquoise,0,cool,Negative
+mean_spirited,gold,0,warm,Negative
+untrustful,gold,0,warm,Negative
+false,gold,0,warm,Negative
+innocent,white,2,neutral,Positive
+innocent,pink,0,warm,Positive
+pure,white,2,neutral,Positive
+pure,pink,0,warm,Positive
+pure,silver,0,cool,Positive
+cleanliness,white,0,neutral,Positive
+equality,white,1,neutral,Positive
+complete_and_whole,white,2,neutral,Positive
+complete_and_whole,pink,0,warm,Positive
+simple,white,0,neutral,Neutral
+simple,brown,0,neutral,Neutral
+immaculate_and_neat,white,0,neutral,Positive
+pristine,white,0,neutral,Positive
+open,white,0,neutral,Neutral
+open,pink,0,warm,Neutral
+new_beginnings,white,1,neutral,Positive
+sterile,white,0,neutral,Neutral
+stark,white,0,neutral,Negative
+fastidious,white,0,neutral,Neutral
+empty,white,0,neutral,Negative
+plain,white,0,neutral,Negative
+distant,white,0,neutral,Negative
+unimaginative,white,0,neutral,Negative
+contained,black,0,neutral,Positive
+sophisticated,black,1,neutral,Positive
+sophisticated,silver,0,cool,Positive
+sophisticated,gold,0,warm,Positive
+sexy_and_seductive,black,0,neutral,Positive
+sexy_and_seductive,red,0,warm,Positive
+withholding,black,0,neutral,Negative
+serious,black,0,neutral,Neutral
+serious,brown,0,neutral,Neutral
+control,black,1,neutral,Neutral
+control,grey,1,neutral,Neutral
+strong_will,red,0,warm,Positive
+strong_will,black,0,neutral,Positive
+appetite,red,0,warm,Positive
+appetite,orange,0,warm,Positive
+physical_desires,red,1,warm,Positive
+motivating,red,1,warm,Positive
+happy,orange,0,warm,Positive
+happy,yellow,1,warm,Positive
+happy,turquoise,0,cool,Positive
+happy,magenta,0,warm,Positive
+emotionally_strong,orange,0,warm,Positive
+uplifting,yellow,0,warm,Positive
+uplifting,turquoise,0,cool,Positive
+uplifting,magenta,0,warm,Positive
+anxious,yellow,1,warm,Negative
+anxious,magenta,0,warm,Negative
+highly_visible,yellow,0,warm,Neutral
+quick_decisions,yellow,1,warm,Neutral
+quick_decisions,turquoise,0,cool,Neutral
+relaxing,green,0,cool,Positive
+relaxing,blue,0,cool,Positive
+peace,green,0,cool,Positive
+peace,blue,1,cool,Positive
+peace,turquoise,0,cool,Positive
+peace,magenta,0,warm,Positive
+peace,white,0,neutral,Positive
+finance,green,0,cool,Neutral
+secure,blue,0,cool,Neutral
+secure,brown,2,neutral,Neutral
+truthful,blue,0,cool,Neutral
+devotion,blue,0,cool,Positive
+devotion,indigo,0,cool,Positive
+safe_and_non-threatening,blue,0,cool,Positive
+safe_and_non-threatening,pink,1,warm,Positive
+safe_and_non-threatening,grey,0,neutral,Positive
+inflexible,blue,0,cool,Negative
+inflexible,indigo,0,cool,Negative
+nostalgic,blue,0,cool,Neutral
+religious,blue,1,cool,Neutral
+religious,indigo,0,cool,Neutral
+perceptive,indigo,2,cool,Neutral
+perceptive,turquoise,0,cool,Neutral
+concentration,indigo,0,cool,Neutral
+justice,indigo,0,cool,Neutral
+justice,silver,0,cool,Neutral
+fair,indigo,0,cool,Neutral
+fair,white,0,neutral,Neutral
+law,indigo,0,cool,Neutral
+traditions_and_rituals,indigo,0,cool,Neutral
+dramatic,indigo,1,cool,Neutral
+narrow-minded,indigo,0,cool,Negative
+introspective,indigo,1,cool,Neutral
+introspective,purple,0,cool,Neutral
+imagination,purple,2,cool,Positive
+peace_of_mind,purple,0,cool,Positive
+unique_and_individual,purple,1,cool,Positive
+noble,purple,0,cool,Positive
+noble,gold,0,warm,Positive
+luxurious,gold,1,warm,Positive
+luxurious,purple,0,cool,Positive
+demands_respect,purple,1,cool,Negative
+demands_respect,pink,0,warm,Negative
+ambitious,purple,0,cool,Positive
+self-assured,purple,0,cool,Positive
+inspiring,purple,1,cool,Positive
+inspiring,magenta,1,warm,Positive
+empathic,purple,1,cool,Positive
+empathic,turquoise,0,cool,Positive
+empathic,pink,0,warm,Positive
+clear_thinking,turquoise,0,cool,Positive
+clear_thinking,yellow,0,warm,Positive
+self_esteem,turquoise,0,cool,Positive
+observation,turquoise,0,cool,Neutral
+discriminatory,turquoise,0,cool,Negative
+intimate,pink,0,warm,Positive
+removes_angriness_and_aggression,pink,0,warm,Positive
+silly,pink,0,warm,Negative
+affectionate,pink,1,warm,Positive
+cooperative,magenta,0,warm,Positive
+self-respect,magenta,0,warm,Positive
+self-respect,orange,0,warm,Positive
+overwhelming,magenta,0,warm,Negative
+irritates,magenta,0,warm,Negative
+change_and_transformation,magenta,1,warm,Neutral
+family_and_friends,green,0,cool,Positive
+family_and_friends,pink,0,warm,Positive
+family_and_friends,brown,0,neutral,Positive
+genuine,brown,0,neutral,Positive
+natural_and_organic,brown,1,neutral,Positive
+agriculture_and_farming,brown,0,neutral,Neutral
+quiet,grey,0,neutral,Neutral
+emotional,silver,0,cool,Neutral
+emotional_control,purple,1,cool,Positive
+emotional_control,turquoise,1,cool,Positive
+conventional,black,0,neutral,Neutral
+conventional,grey,0,neutral,Neutral
+compromise,grey,2,neutral,Neutral
+detached,white,0,neutral,Negative
+detached,grey,2,neutral,Negative
+respectable,silver,0,cool,Positive
+respectable,purple,1,cool,Positive
+patient,silver,0,cool,Positive
+non-committal,silver,0,cool,Neutral
+achievement,gold,0,warm,Positive
+status,gold,2,warm,Neutral
+triumph,gold,0,warm,Positive
+prosperity,gold,0,warm,Positive
+prestige,gold,1,warm,Positive
+prestige,silver,1,cool,Positive
+value,gold,0,warm,Positive
+knowledge,yellow,0,warm,Neutral
+knowledge,gold,0,warm,Neutral
+knowledge,magenta,0,warm,Neutral
+win,gold,0,warm,Positive
+lacking_kindness,gold,0,warm,Negative
+lacking_generosity,gold,0,warm,Negative
+enlightenment,gold,1,warm,Positive
+disinterested,white,0,neutral,Negative
+efficient,white,1,neutral,Positive
+intimidating,black,0,neutral,Negative
+unfriendly,black,0,neutral,Negative
+unapproachable,black,0,neutral,Negative
+disciplined,black,0,neutral,Positive
+mind,yellow,2,warm,Neutral
+rejuvenating,yellow,1,warm,Positive
+rejuvenating,green,1,cool,Positive
+diplomatic,green,1,cool,Positive
+higher_mind,indigo,2,cool,Positive
+higher_mind,purple,0,cool,Positive
+higher_mind,blue,0,cool,Positive
+rescuer,white,1,neutral,Positive
+unity,white,1,neutral,Positive
