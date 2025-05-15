@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1LObEPL3P1uGzy6c5HoIzMUX6okxKbfKZ
 """
 
+experimental_get_query_params
+
 import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
@@ -60,7 +62,7 @@ with st.form("colour_picker_form", clear_on_submit=False):
     submitted = st.form_submit_button("Confirm Colour")
 
     # Get which button was clicked
-    color_choice = st.experimental_get_query_params().get("color_choice", [selected_colour])[0]
+    color_choice = st.query_params().get("color_choice", [selected_colour])[0]
     if submitted and color_choice in available_colours:
         selected_colour = color_choice
         st.session_state.selected_colour = selected_colour
