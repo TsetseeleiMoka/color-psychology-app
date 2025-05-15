@@ -34,25 +34,43 @@ available_colours = list(hex_to_name.keys())
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
 
-# --- Colour Selection ---
+###
 st.subheader("🎨 Pick a Colour")
 
+# Create clickable coloured boxes using HTML and form buttons
 selected_colour = st.session_state.get("selected_colour", available_colours[0])
 
-cols = st.columns(8)
-for i, hex_col in enumerate(available_colours):
-    with cols[i % 8]:
-        if st.button(" ", key=hex_col, help=hex_col):
-            selected_colour = hex_col
-            st.session_state.selected_colour = hex_col
-        st.markdown(
-            f"<div style='width: 30px; height: 30px; background-color: {hex_col}; border: 1px solid #000; border-radius: 5px; margin-top: -35px;'></div>",
-            unsafe_allow_html=True
-        )
+with st.form("colour_picker_form", clear_on_submit=False):
+    cols = st.columns(8)
+    for i, hex_col in enumerate(available_colours):
+        with cols[i % 8]:
+            st.markdown(
+                f"""
+                <button type="submit" name="color_choice" value="{hex_col}" style="
+                    background-color: {hex_col};
+                    border: 2px solid #00000033;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    margin: 2px;
+                " title="{hex_col}"></button>
+                """,
+                unsafe_allow_html=True
+            )
+
+    submitted = st.form_submit_button("Confirm Colour")
+
+    # Get which button was clicked
+    color_choice = st.experimental_get_query_params().get("color_choice", [selected_colour])[0]
+    if submitted and color_choice in available_colours:
+        selected_colour = color_choice
+        st.session_state.selected_colour = selected_colour
 
 st.write(f"Selected colour: `{selected_colour}` ({hex_to_name[selected_colour]})")
 
-st.markdown("---")
+
+###
 
 # --- Section: Top 5 Most Common Colours ---
 with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
