@@ -9,91 +9,61 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import webcolors
+from PIL import Image
+import os
 
-# === Load data ===
+st.set_page_config(page_title="Color Psychology App", layout="wide")
+
+# Load your dataframe - replace with your actual data loading method
 @st.cache_data
 def load_data():
-    df = pd.read_csv("data/color-psychology.csv")
+    df = pd.read_csv("color_psychology_data.csv")  # Your CSV file path here
     return df
 
 df = load_data()
 
-# === Colour <-> Hex map for your colours ===
+# List of colours in your dataframe
+colors = df['color'].unique()
+colors = sorted(colors)  # alphabetically
+
+# Map colours to hex for swatches (add more if needed)
 color_hex_map = {
-    "red": "#FF0000",
-    "orange": "#FFA500",
-    "magenta": "#FF00FF",
-    "black": "#000000",
-    "indigo": "#4B0082",
-    "purple": "#800080",
-    "gold": "#FFD700",
-    "pink": "#FFC0CB",
-    "brown": "#A52A2A",
-    "blue": "#0000FF",
-    "silver": "#C0C0C0",
-    "yellow": "#FFFF00",
-    "green": "#008000",
-    "turquoise": "#40E0D0",
-    "white": "#FFFFFF",
-    "grey": "#808080"
+    'red': '#FF0000',
+    'orange': '#FFA500',
+    'magenta': '#FF00FF',
+    'black': '#000000',
+    'indigo': '#4B0082',
+    'purple': '#800080',
+    'gold': '#FFD700',
+    'pink': '#FFC0CB',
+    'brown': '#A52A2A',
+    'blue': '#0000FF',
+    'silver': '#C0C0C0',
+    'yellow': '#FFFF00',
+    'green': '#008000',
+    'turquoise': '#40E0D0',
+    'white': '#FFFFFF',
+    'grey': '#808080'
 }
 
-hex_to_name = {v.lower(): k for k, v in color_hex_map.items()}
+st.title("🎨 Color Psychology Insights")
 
-# === Function to find closest colour name from hex ===
-def closest_color(requested_hex):
-    requested_rgb = webcolors.hex_to_rgb(requested_hex)
-    min_dist = float('inf')
-    closest_name = None
-    for name, hex_val in color_hex_map.items():
-        r, g, b = webcolors.hex_to_rgb(hex_val)
-        dist = (r - requested_rgb[0])**2 + (g - requested_rgb[1])**2 + (b - requested_rgb[2])**2
-        if dist < min_dist:
-            min_dist = dist
-            closest_name = name
-    return closest_name
+# Sidebar colour picker (selectbox from your colours)
+selected_color = st.sidebar.selectbox("Select a colour", options=colors)
 
-# === Streamlit App Layout ===
-st.title("🎨 Colour Psychology Explorer")
-
-st.sidebar.header("Pick a Colour")
-
-# Colour picker widget with default red
-picked_hex = st.sidebar.color_picker("Select a colour", "#FF0000").lower()
-
-# Map picked hex to closest named colour in dataset
-selected_color = hex_to_name.get(picked_hex)
-if not selected_color:
-    selected_color = closest_color(picked_hex)
-
-st.sidebar.markdown(f"**Closest colour:** {selected_color.capitalize()}")
-
-# Filter dataframe by selected colour
-filtered_df = df[df['color'] == selected_color]
-
-if filtered_df.empty:
-    st.warning("No data available for this colour.")
+# Show wordcloud image for selected colour
+wordcloud_path = f"wordclouds/{selected_color}.png"
+if os.path.exists(wordcloud_path):
+    st.subheader(f"Emotion Wordcloud for {selected_color.capitalize()}")
+    image = Image.open(wordcloud_path)
+    st.image(image, use_column_width=True)
 else:
-    # Show table of emotions and details
-    st.subheader(f"Emotions and Insights for {selected_color.capitalize()}")
-    st.dataframe(filtered_df[['emotion_text', 'positive', 'tone', 'sentiment', 'importance']])
+    st.warning("Wordcloud image not found for this colour.")
 
-    # Plot importance of emotions for selected colour
-    st.subheader("Emotion Importance Bar Chart")
-    plt.figure(figsize=(8, 4))
-    sns.barplot(data=filtered_df, x='importance', y='emotion_text', palette=[picked_hex])
-    plt.xlabel("Importance")
-    plt.ylabel("Emotion")
-    plt.title(f"Emotions associated with {selected_color.capitalize()}")
-    st.pyplot(plt)
-
-    # Bonus: show how many positive / negative emotions
-    pos_count = filtered_df['positive'].sum()
-    total = len(filtered_df)
-    st.write(f"Positive emotions: {pos_count} / {total}")
+# Show related emotions from dataframe
+st.subheader(f"Emotions associated with {selected_color.capitalize()}")
+emotions = df[df['color'] == selected_color][['emotion_text', 'sentiment', 'tone']].drop_duplicates()
+st.dataframe(emotions.reset_index(drop=True))
 
 st.markdown("---")
-st.write("App powered by Colour Psychology Dataset")
+st.header("
