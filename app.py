@@ -76,29 +76,39 @@ st.markdown("---")
 # --- Section: Top 5 Emotions Associated With Selected Colour ---
 
 with st.expander("🔍 Top 5 Most Common Emotions Associated With This Colour", expanded=True):
-    st.write("Here are the top 5 emotions most commonly linked to your chosen colour.")
+    st.markdown("Here are the top 5 emotions most commonly linked to your chosen colour, based on how often they appear in the dataset.")
+
     # Filter data for selected colour
     filtered = df[df['color'] == selected_colour]
 
-    # Assuming your df has 'emotion' and a numeric 'count' or similar frequency column
-    # If you don't have a frequency column, you may count occurrences of each emotion
+    # Get emotion frequency (use 'count' column if available)
     if 'count' in filtered.columns:
-        emotion_counts = filtered.groupby('emotion')['count'].sum().sort_values(ascending=False).head(5)
+        emotion_counts = (
+            filtered.groupby('emotion')['count']
+            .sum()
+            .sort_values(ascending=False)
+            .head(5)
+        )
     else:
         emotion_counts = filtered['emotion'].value_counts().head(5)
 
-    # Pie chart with rainbow palette
+    # Rainbow colour palette for visual clarity
     rainbow_palette = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF']
-    fig_pie = go.Figure(data=[go.Pie(
-        labels=emotion_counts.index,
-        values=emotion_counts.values,
-        marker=dict(colors=rainbow_palette),
-        hoverinfo='label+percent',
-        textinfo='label+value'
-    )])
+
+    fig_pie = go.Figure(
+        data=[go.Pie(
+            labels=emotion_counts.index,
+            values=emotion_counts.values,
+            marker=dict(colors=rainbow_palette),
+            hoverinfo='label+percent',
+            textinfo='label+value',
+        )]
+    )
+
+    fig_pie.update_layout(margin=dict(t=0, b=0, l=0, r=0))
 
     st.plotly_chart(fig_pie, use_container_width=True)
-    st.markdown("Hover over the chart segments to see percentages.")
+    st.caption("📊 Hover over each segment to see its percentage share and emotion.")
 
 st.markdown("---")
 
