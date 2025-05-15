@@ -66,4 +66,61 @@ emotions = df[df['color'] == selected_color][['emotion_text', 'sentiment', 'tone
 st.dataframe(emotions.reset_index(drop=True))
 
 st.markdown("---")
-st.header("
+st.header("🏢 Brand & Industry Applications")
+
+business_type = st.selectbox(
+    "Select a business type to see recommended colours:",
+    options=["Tech", "Luxury", "Wellness", "Education", "Retail"]
+)
+
+recommendations = {
+    "Tech": ["blue", "grey", "white"],
+    "Luxury": ["gold", "black", "purple"],
+    "Wellness": ["green", "turquoise", "white"],
+    "Education": ["yellow", "blue", "orange"],
+    "Retail": ["red", "orange", "yellow"],
+}
+
+recommended_colors = recommendations.get(business_type, [])
+
+st.write(f"Recommended colours for **{business_type}**:")
+cols_str = ", ".join([c.capitalize() for c in recommended_colors])
+st.write(cols_str)
+
+# Show color swatches
+cols_html = "".join(
+    f'<div style="background-color:{color_hex_map[c]}; width:60px; height:60px; display:inline-block; margin-right:5px; border-radius:8px;"></div>'
+    for c in recommended_colors
+)
+st.markdown(cols_html, unsafe_allow_html=True)
+
+st.markdown("---")
+st.header("✨ Personalized Colour Recommendations")
+
+goal = st.text_input("Enter your goal (e.g., 'I want to improve focus'):")
+
+energy_level = st.slider("Energy Level", 0, 10, 5)
+relaxation_level = st.slider("Relaxation Level", 0, 10, 5)
+
+if goal:
+    st.write(f"Based on your goal: *{goal}*")
+
+    if energy_level > relaxation_level:
+        suggested = ["red", "orange", "yellow"]  # energetic colours
+    else:
+        suggested = ["blue", "green", "turquoise"]  # relaxing colours
+
+    st.write("Suggested colours:")
+    st.write(", ".join([c.capitalize() for c in suggested]))
+
+    # Show colour swatches
+    swatch_html = "".join(
+        f'<div style="background-color:{color_hex_map[c]}; width:50px; height:50px; display:inline-block; margin-right:5px; border-radius:6px;"></div>'
+        for c in suggested
+    )
+    st.markdown(swatch_html, unsafe_allow_html=True)
+
+    # Supporting insights for suggested colours
+    st.subheader("Supporting Insights")
+    insights = df[df['color'].isin(suggested)][['color', 'emotion_text', 'sentiment', 'tone']].drop_duplicates()
+    st.dataframe(insights.reset_index(drop=True))
