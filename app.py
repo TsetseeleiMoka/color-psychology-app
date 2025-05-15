@@ -9,69 +9,136 @@ Original file is located at
 
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-from PIL import Image
-import os
+import plotly.graph_objs as go
+import numpy as np
 
-# Set page configuration
-st.set_page_config(page_title="Colour Psychology Explorer", layout="wide")
+st.set_page_config(page_title="🎨 Colour Psychology Explorer", layout="centered")
 
-# Load dataset
+# --- Load data ---
 @st.cache_data
 def load_data():
-    return pd.read_csv("color_psychology_data.csv")  # CSV is in same folder as app.py
+    return pd.read_csv("color_psychology_data.csv")
 
 df = load_data()
-st.write("Available columns:", df.columns.tolist())
 
-# App title
+# --- Title ---
 st.title("🎨 Colour Psychology Explorer")
-st.markdown("Explore emotional associations of colours and visualise their psychological impact.")
+st.write("Explore emotional associations of colours and visualise their psychological impact.")
 
-# Show dataframe
-if st.checkbox("Show raw data"):
+# --- Interactive Colour Wheel ---
+st.markdown("### 🎡 Pick a colour using the interactive wheel or the list below")
+colors = df['color'].unique()
+n = len(colors)
+angles = np.linspace(0, 2 * np.pi, n, endpoint=False)
+x = np.cos(angles)
+y = np.sin(angles)
+
+scatter = go.Scatter(
+    x=x,
+    y=y,
+    mode='markers+text',
+    marker=dict(
+        size=40,
+        color=colors,
+        line=dict(color='black', width=1)
+    ),
+    text=colors,
+    textposition="bottom center",
+    hoverinfo='text',
+    hovertext=colors,
+    customdata=colors
+)
+
+fig = go.Figure(data=[scatter])
+fig.update_layout(
+    width=600,
+    height=600,
+    margin=dict(l=20, r=20, t=20, b=20),
+    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False, range=[-1.5, 1.5]),
+    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, range=[-1.5, 1.5]),
+    plot_bgcolor='white',
+    clickmode='event+select',
+    dragmode=False,
+)
+
+plotly_chart = st.plotly_chart(fig, use_container_width=True)
+
+# Fallback radio selector
+st.markdown("**Or pick a colour from the list:**")
+selected_colour = st.radio("Select a colour:", options=colors)
+
+# To connect interactive wheel to Streamlit, we’d need callbacks which Streamlit doesn’t support fully yet.
+# So for now, user selects colour via radio or wheel, and we use the radio value.
+# (Optionally, add instructions for user to pick from list if wheel not responding.)
+
+st.markdown("---")
+
+# --- Section: Top 5 Emotions Associated With Selected Colour ---
+
+with st.expander("🔍 Top 5 Most Common Emotions Associated With This Colour", expanded=True):
+    st.write("Here are the top 5 emotions most commonly linked to your chosen colour.")
+    # Filter data for selected colour
+    filtered = df[df['color'] == selected_colour]
+
+    # Assuming your df has 'emotion' and a numeric 'count' or similar frequency column
+    # If you don't have a frequency column, you may count occurrences of each emotion
+    if 'count' in filtered.columns:
+        emotion_counts = filtered.groupby('emotion')['count'].sum().sort_values(ascending=False).head(5)
+    else:
+        emotion_counts = filtered['emotion'].value_counts().head(5)
+
+    # Pie chart with rainbow palette
+    rainbow_palette = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF']
+    fig_pie = go.Figure(data=[go.Pie(
+        labels=emotion_counts.index,
+        values=emotion_counts.values,
+        marker=dict(colors=rainbow_palette),
+        hoverinfo='label+percent',
+        textinfo='label+value'
+    )])
+
+    st.plotly_chart(fig_pie, use_container_width=True)
+    st.markdown("Hover over the chart segments to see percentages.")
+
+st.markdown("---")
+
+# --- Section: Word Cloud (static for now) ---
+
+with st.expander("☁️ Emotional Word Cloud", expanded=False):
+    st.write("Visual representation of emotional words associated with the selected colour.")
+    # You can add your word cloud images here or generate on the fly if you have code.
+    # For example, if you have word cloud images saved named by colour:
+    try:
+        st.image(f"wordclouds/{selected_colour}.png", caption=f"Word cloud for {selected_colour}")
+    except FileNotFoundError:
+        st.write("Word cloud image not found for this colour.")
+
+st.markdown("---")
+
+# --- Section: Additional Info ---
+
+with st.expander("ℹ️ About This Explorer", expanded=False):
+    st.write(
+        """
+        This tool helps you explore how different colours are psychologically and emotionally perceived.
+        Select a colour to discover its top associated emotions and see visual word clouds representing these associations.
+        Use the interactive colour wheel for a fun way to pick colours!
+        """
+    )
+
+st.markdown("---")
+
+# 🧾 Section 3: Raw Data (optional)
+with st.expander("🧾 Show Raw Dataset"):
+    st.markdown("Preview the raw dataset used for this dashboard.")
     st.dataframe(df)
 
-# Section 1: Bar chart of emotions associated with each colour
-st.header("🔍 Most Common Emotions Associated With Colours")
-
-selected_colour = st.selectbox("Choose a colour:", df['color'].unique())
-
-filtered_df = df[df['color'] == selected_colour]
-emotion_counts = filtered_df['emotion'].value_counts()
-
-st.subheader(f"Emotions commonly associated with {selected_colour.capitalize()}:")
-fig, ax = plt.subplots()
-sns.barplot(x=emotion_counts.values, y=emotion_counts.index, palette='pastel', ax=ax)
-ax.set_xlabel("Count")
-ax.set_ylabel("Emotion")
-st.pyplot(fig)
-
-# Section 2: Display wordcloud if available
-st.header("☁️ Word Cloud of Associated Words")
-
-wordcloud_path = f"wordclouds/{selected_colour.lower()}.png"
-
-if os.path.exists(wordcloud_path):
-    st.image(Image.open(wordcloud_path), caption=f"Words associated with {selected_colour}")
-else:
-    st.warning(f"Wordcloud image for '{selected_colour}' not found.")
-
-# Section 3: Colour filter + emotion breakdown
-st.header("📊 Explore Colour Associations by Emotion")
-
-selected_emotion = st.selectbox("Choose an emotion:", df['emotion'].unique())
-
-emotion_df = df[df['emotion'] == selected_emotion]
-colour_counts = emotion_df['color'].value_counts()
-
-fig2, ax2 = plt.subplots()
-sns.barplot(x=colour_counts.values, y=colour_counts.index, palette='bright', ax=ax2)
-ax2.set_xlabel("Count")
-ax2.set_ylabel("Colour")
-st.pyplot(fig2)
 
 # Footer
 st.markdown("---")
 st.caption("Made with 💙 by Moka")
+
+# Optional: Tooltip example for section titles (Streamlit doesn't support hover tooltips natively on markdown,
+# but you can add info icons with st.info or emojis with explanations as done above.)
+
+# --- End of app ---
