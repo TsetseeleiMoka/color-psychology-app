@@ -58,10 +58,11 @@ for i, (name, hex_code) in enumerate(zip(colors, hex_codes)):
         "cursor: pointer;"
     )
 
-    if cols[i].button(name, key=name, help=f"Select {name}"):
+    if cols[i].button(name, key=f"{name}_{i}", help=f"Select {name}"):
         st.session_state.selected_colour = name
 
     cols[i].markdown(f"<div style='{box_style}'></div>", unsafe_allow_html=True)
+
 
 # --- Selected Colour Display ---
 if st.session_state.selected_colour:
