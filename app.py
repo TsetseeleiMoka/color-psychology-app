@@ -10,7 +10,6 @@ Original file is located at
 import streamlit as st
 import pandas as pd
 import plotly.graph_objs as go
-import numpy as np
 
 st.set_page_config(page_title="🎨 Colour Psychology Explorer", layout="centered")
 
@@ -21,93 +20,51 @@ def load_data():
 
 df = load_data()
 
+# --- Colour name mapping ---
+hex_to_name = {
+    '#FF0000': 'Red', '#FFA500': 'Orange', '#FF00FF': 'Magenta', '#000000': 'Black',
+    '#4B0082': 'Indigo', '#800080': 'Purple', '#FFD700': 'Gold', '#FFC0CB': 'Pink',
+    '#A52A2A': 'Brown', '#0000FF': 'Blue', '#C0C0C0': 'Silver', '#FFFF00': 'Yellow',
+    '#008000': 'Green', '#40E0D0': 'Turquoise', '#FFFFFF': 'White', '#808080': 'Grey'
+}
+
+available_colours = list(hex_to_name.keys())
+
 # --- Title ---
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
 
-###
-# Let user pick colour via colour wheel
-selected_hex = st.color_picker("🎨 Pick a colour")
+# --- Colour Selection ---
+st.subheader("🎨 Pick a Colour")
 
-# Try to find the matching colour name from your dataset
-if 'hex' in df.columns:
-    match = df[df['hex'].str.lower() == selected_hex.lower()]
-    if not match.empty:
-        selected_colour = match['color'].iloc[0]
-    else:
-        st.warning("That colour isn't found in the dataset.")
-        selected_colour = None
-else:
-    st.error("No hex values available in the dataset to match your colour.")
-    selected_colour = None
+selected_colour = st.session_state.get("selected_colour", available_colours[0])
 
-###
+cols = st.columns(8)
+for i, hex_col in enumerate(available_colours):
+    with cols[i % 8]:
+        if st.button(" ", key=hex_col, help=hex_col):
+            selected_colour = hex_col
+            st.session_state.selected_colour = hex_col
+        st.markdown(
+            f"<div style='width: 30px; height: 30px; background-color: {hex_col}; border: 1px solid #000; border-radius: 5px; margin-top: -35px;'></div>",
+            unsafe_allow_html=True
+        )
 
-# --- Interactive Colour Wheel ---
-st.markdown("### 🎡 Pick a colour using the interactive wheel or the list below")
-colors = df['color'].unique()
-n = len(colors)
-angles = np.linspace(0, 2 * np.pi, n, endpoint=False)
-x = np.cos(angles)
-y = np.sin(angles)
-
-scatter = go.Scatter(
-    x=x,
-    y=y,
-    mode='markers+text',
-    marker=dict(
-        size=40,
-        color=colors,
-        line=dict(color='black', width=1)
-    ),
-    text=colors,
-    textposition="bottom center",
-    hoverinfo='text',
-    hovertext=colors,
-    customdata=colors
-)
-
-fig = go.Figure(data=[scatter])
-fig.update_layout(
-    width=600,
-    height=600,
-    margin=dict(l=20, r=20, t=20, b=20),
-    xaxis=dict(showgrid=False, zeroline=False, showticklabels=False, range=[-1.5, 1.5]),
-    yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, range=[-1.5, 1.5]),
-    plot_bgcolor='white',
-    clickmode='event+select',
-    dragmode=False,
-)
-
-plotly_chart = st.plotly_chart(fig, use_container_width=True)
-
-# Fallback radio selector
-st.markdown("**Or pick a colour from the list:**")
-selected_colour = st.radio("Select a colour:", options=colors)
-
-# To connect interactive wheel to Streamlit, we’d need callbacks which Streamlit doesn’t support fully yet.
-# So for now, user selects colour via radio or wheel, and we use the radio value.
-# (Optionally, add instructions for user to pick from list if wheel not responding.)
+st.write(f"Selected colour: `{selected_colour}` ({hex_to_name[selected_colour]})")
 
 st.markdown("---")
 
-# --- Section: Top 5 Most Common Colours in Dataset (Replaces emotion-based pie) ---
+# --- Section: Top 5 Most Common Colours ---
 with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
     st.write("These are the top 5 colours that appear most frequently in the dataset.")
 
-    # Count how often each colour appears
-    colour_counts = df['color'].value_counts().head(5)
+    colour_counts = df['hex'].value_counts().head(5)
+    named_labels = [hex_to_name.get(hex_code, hex_code) for hex_code in colour_counts.index]
 
-    # Debugging output
-    st.write("DEBUG: Colour counts")
-    st.dataframe(colour_counts)
-
-    # Pie chart with rainbow palette
-    rainbow_palette = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF']
     fig_pie = go.Figure(data=[go.Pie(
-        labels=colour_counts.index,
+        labels=named_labels,
         values=colour_counts.values,
-        marker=dict(colors=rainbow_palette[:len(colour_counts)]),
+        marker=dict(colors=colour_counts.index),
         hoverinfo='label+percent',
         textinfo='label+value'
     )])
@@ -117,43 +74,32 @@ with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
 
 st.markdown("---")
 
-# --- Section: Word Cloud (static for now) ---
-
+# --- Section: Word Cloud ---
 with st.expander("☁️ Emotional Word Cloud", expanded=False):
     st.write("Visual representation of emotional words associated with the selected colour.")
-    # You can add your word cloud images here or generate on the fly if you have code.
-    # For example, if you have word cloud images saved named by colour:
     try:
-        st.image(f"wordclouds/{selected_colour}.png", caption=f"Word cloud for {selected_colour}")
+        st.image(f"wordclouds/{selected_colour}.png", caption=f"Word cloud for {hex_to_name[selected_colour]}")
     except FileNotFoundError:
         st.write("Word cloud image not found for this colour.")
 
 st.markdown("---")
 
-# --- Section: Additional Info ---
-
+# --- Section: About ---
 with st.expander("ℹ️ About This Explorer", expanded=False):
     st.write(
         """
         This tool helps you explore how different colours are psychologically and emotionally perceived.
         Select a colour to discover its top associated emotions and see visual word clouds representing these associations.
-        Use the interactive colour wheel for a fun way to pick colours!
         """
     )
 
 st.markdown("---")
 
-# 🧾 Section 3: Raw Data (optional)
+# --- Section: Raw Data ---
 with st.expander("🧾 Show Raw Dataset"):
     st.markdown("Preview the raw dataset used for this dashboard.")
     st.dataframe(df)
 
-
-# Footer
+# --- Footer ---
 st.markdown("---")
 st.caption("Made with 💙 by Moka")
-
-# Optional: Tooltip example for section titles (Streamlit doesn't support hover tooltips natively on markdown,
-# but you can add info icons with st.info or emojis with explanations as done above.)
-
-# --- End of app ---
