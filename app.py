@@ -20,57 +20,66 @@ def load_data():
 
 df = load_data()
 
-# List of valid hex colours from your dataset
-available_colours = [
-    '#FF0000', '#FFA500', '#FF00FF', '#000000', '#4B0082', '#800080',
-    '#FFD700', '#FFC0CB', '#A52A2A', '#0000FF', '#C0C0C0', '#FFFF00',
-    '#008000', '#40E0D0', '#FFFFFF', '#808080'
-]
+# --- Colour name mapping ---
+hex_to_name = {
+    '#FF0000': 'Red', '#FFA500': 'Orange', '#FF00FF': 'Magenta', '#000000': 'Black',
+    '#4B0082': 'Indigo', '#800080': 'Purple', '#FFD700': 'Gold', '#FFC0CB': 'Pink',
+    '#A52A2A': 'Brown', '#0000FF': 'Blue', '#C0C0C0': 'Silver', '#FFFF00': 'Yellow',
+    '#008000': 'Green', '#40E0D0': 'Turquoise', '#FFFFFF': 'White', '#808080': 'Grey'
+}
 
-# --- Initialize selected colour from query params or default ---
-if "color_choice" in st.experimental_get_query_params():
-    selected_colour = st.experimental_get_query_params()["color_choice"][0]
-    if selected_colour not in available_colours:
-        selected_colour = available_colours[0]
-else:
-    selected_colour = available_colours[0]
+available_colours = list(hex_to_name.keys())
 
-if "selected_colour" not in st.session_state:
-    st.session_state.selected_colour = selected_colour
-
+# --- Title ---
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
-
 st.subheader("🎨 Pick a Colour")
 
-cols = st.columns(8)
-for i, hex_col in enumerate(available_colours):
-    with cols[i % 8]:
-        if st.button(" ", key=hex_col, help=hex_col):
-            st.session_state.selected_colour = hex_col
-            st.experimental_set_query_params(color_choice=hex_col)
-        border_style = "2px solid yellow" if st.session_state.selected_colour == hex_col else "1px solid #000"
-        st.markdown(
-            f"<div style='width: 30px; height: 30px; background-color: {hex_col}; "
-            f"border: {border_style}; border-radius: 5px; margin-top: -35px;'></div>",
-            unsafe_allow_html=True
-        )
+# Create clickable coloured boxes using HTML and form buttons
+selected_colour = st.session_state.get("selected_colour", available_colours[0])
 
-st.write(f"Selected colour: `{st.session_state.selected_colour}`")
+with st.form("colour_picker_form", clear_on_submit=False):
+    cols = st.columns(8)
+    for i, hex_col in enumerate(available_colours):
+        with cols[i % 8]:
+            st.markdown(
+                f"""
+                <button type="submit" name="color_choice" value="{hex_col}" style="
+                    background-color: {hex_col};
+                    border: 2px solid #00000033;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    margin: 2px;
+                " title="{hex_col}"></button>
+                """,
+                unsafe_allow_html=True
+            )
+
+    submitted = st.form_submit_button("Confirm Colour")
+
+    # Get which button was clicked
+    color_choice = st.experimental_get_query_params().get("color_choice", [selected_colour])[0]
+    if submitted and color_choice in available_colours:
+        selected_colour = color_choice
+        st.session_state.selected_colour = selected_colour
+
+st.write(f"Selected colour: `{selected_colour}` ({hex_to_name[selected_colour]})")
+
 st.markdown("---")
 
-# --- Section: Top 5 Most Common Emotions Associated With Selected Colour ---
-with st.expander("🔍 Top 5 Most Common Emotions Associated With This Colour", expanded=True):
-    st.write("Here are the top 5 emotions most commonly linked to your chosen colour.")
+# --- Section: Top 5 Most Common Colours ---
+with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
+    st.write("These are the top 5 colours that appear most frequently in the dataset.")
 
-    filtered = df[df['color'] == st.session_state.selected_colour]
-    emotion_counts = filtered['emotion'].value_counts().head(5)
+    colour_counts = df['hex'].value_counts().head(5)
+    named_labels = [hex_to_name.get(hex_code, hex_code) for hex_code in colour_counts.index]
 
-    rainbow_palette = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF']
     fig_pie = go.Figure(data=[go.Pie(
-        labels=emotion_counts.index,
-        values=emotion_counts.values,
-        marker=dict(colors=rainbow_palette[:len(emotion_counts)]),
+        labels=named_labels,
+        values=colour_counts.values,
+        marker=dict(colors=colour_counts.index),
         hoverinfo='label+percent',
         textinfo='label+value'
     )])
@@ -80,17 +89,17 @@ with st.expander("🔍 Top 5 Most Common Emotions Associated With This Colour", 
 
 st.markdown("---")
 
-# --- Section: Word Cloud (static for now) ---
+# --- Section: Word Cloud ---
 with st.expander("☁️ Emotional Word Cloud", expanded=False):
     st.write("Visual representation of emotional words associated with the selected colour.")
     try:
-        st.image(f"wordclouds/{st.session_state.selected_colour}.png", caption=f"Word cloud for {st.session_state.selected_colour}")
+        st.image(f"wordclouds/{selected_colour}.png", caption=f"Word cloud for {hex_to_name[selected_colour]}")
     except FileNotFoundError:
         st.write("Word cloud image not found for this colour.")
 
 st.markdown("---")
 
-# --- Section: Additional Info ---
+# --- Section: About ---
 with st.expander("ℹ️ About This Explorer", expanded=False):
     st.write(
         """
@@ -101,10 +110,11 @@ with st.expander("ℹ️ About This Explorer", expanded=False):
 
 st.markdown("---")
 
-# --- Section: Raw Data (optional) ---
+# --- Section: Raw Data ---
 with st.expander("🧾 Show Raw Dataset"):
     st.markdown("Preview the raw dataset used for this dashboard.")
     st.dataframe(df)
 
+# --- Footer ---
 st.markdown("---")
 st.caption("Made with 💙 by Moka")
