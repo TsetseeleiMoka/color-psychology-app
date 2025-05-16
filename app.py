@@ -33,6 +33,22 @@ available_colours = list(hex_to_name.keys())
 # --- Title ---
 st.title("🎨 Colour Psychology Explorer")
 st.write("Explore emotional associations of colours and visualise their psychological impact.")
+
+st.markdown("---")
+
+# --- Section: About ---
+with st.expander("ℹ️ About This Explorer", expanded=False):
+    st.write(
+        """
+        This tool helps you explore how different colours are psychologically and emotionally perceived.
+        Select a colour to discover its top associated emotions in word clouds representing these associations.
+        Even better...a recommendations section based on the selected colour to apply in real-world circumstances!
+        """
+    )
+
+st.markdown("---")
+
+
 st.subheader("🎨 Pick a Colour")
 selected_colour = st.radio(
     "Pick a Colour",
@@ -43,6 +59,81 @@ selected_colour = st.radio(
 st.session_state.selected_colour = selected_colour
 
 st.markdown("---")
+
+# --- Section: Word Cloud ---
+import os
+
+with st.expander("☁️ Emotional Word Cloud", expanded=True):
+    st.write("Visual representation of emotional words associated with the selected colour.")
+    colour_name = hex_to_name[selected_colour].lower()
+    filename = f"wordclouds/{colour_name}.png"
+
+    if os.path.exists(filename):
+        st.image(filename, caption=f"Word cloud for {hex_to_name[selected_colour]}")
+    else:
+        st.write("Word cloud image not found for this colour.")
+
+st.markdown("---")
+
+# --- Section: Recommendations ---
+with st.expander("💡 Recommendations Based on Selected Colour", expanded=False):
+    st.write(f"Recommendations for **{hex_to_name[selected_colour]}**:")
+
+    # Define your recommendations dictionary by colour and category
+    recommendations = {
+        'red': {
+            'fashion': "Your fashion recommendation for red here.",
+            'interior_design': "Your interior design recommendation for red here.",
+            'data_analysis': "Your data analysis tip for red here.",
+            'branding': "Your branding advice for red here."
+        },
+        'orange': {
+            'fashion': "Orange fashion rec here.",
+            'interior_design': "Orange interior rec here.",
+            'data_analysis': "Orange data analysis tip here.",
+            'branding': "Orange branding advice here."
+        },
+        # ... repeat for all colours
+        'magenta': {
+            'fashion': "...",
+            'interior_design': "...",
+            'data_analysis': "...",
+            'branding': "..."
+        },
+        'black': {...},
+        'indigo': {...},
+        'purple': {...},
+        'gold': {...},
+        'pink': {...},
+        'brown': {...},
+        'blue': {...},
+        'silver': {...},
+        'yellow': {...},
+        'green': {...},
+        'turquoise': {...},
+        'white': {...},
+        'grey': {...}
+    }
+
+    # Get the colour name in lowercase (to match your dict keys)
+    colour_key = hex_to_name[selected_colour].lower()
+
+    if colour_key in recommendations:
+        recs = recommendations[colour_key]
+        st.markdown(f"### Fashion\n{recs.get('fashion', 'No recommendation available.')}")
+        st.markdown(f"### Interior Design\n{recs.get('interior_design', 'No recommendation available.')}")
+        st.markdown(f"### Data Analysis\n{recs.get('data_analysis', 'No recommendation available.')}")
+        st.markdown(f"### Branding\n{recs.get('branding', 'No recommendation available.')}")
+    else:
+        st.write("No recommendations available for this colour yet.")
+
+st.markdown("---")
+
+# --- Section: Raw Data ---
+with st.expander("🧾 Show Raw Dataset"):
+    st.markdown("Preview the raw dataset used for this dashboard.")
+    st.dataframe(df)
+
 
 # --- Section: Top 5 Most Common Colours ---
 with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
@@ -63,37 +154,6 @@ with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
     st.markdown("Hover over the chart segments to see percentages.")
 
 st.markdown("---")
-
-# --- Section: Word Cloud ---
-import os
-
-with st.expander("☁️ Emotional Word Cloud", expanded=True):
-    st.write("Visual representation of emotional words associated with the selected colour.")
-    colour_name = hex_to_name[selected_colour].lower()
-    filename = f"wordclouds/{colour_name}.png"
-
-    if os.path.exists(filename):
-        st.image(filename, caption=f"Word cloud for {hex_to_name[selected_colour]}")
-    else:
-        st.write("Word cloud image not found for this colour.")
-
-st.markdown("---")
-
-# --- Section: About ---
-with st.expander("ℹ️ About This Explorer", expanded=False):
-    st.write(
-        """
-        This tool helps you explore how different colours are psychologically and emotionally perceived.
-        Select a colour to discover its top associated emotions and see visual word clouds representing these associations.
-        """
-    )
-
-st.markdown("---")
-
-# --- Section: Raw Data ---
-with st.expander("🧾 Show Raw Dataset"):
-    st.markdown("Preview the raw dataset used for this dashboard.")
-    st.dataframe(df)
 
 # --- Footer ---
 st.markdown("---")
