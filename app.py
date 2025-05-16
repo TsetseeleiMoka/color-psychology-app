@@ -73,47 +73,109 @@ with st.expander("☁️ Emotional Word Cloud", expanded=True):
     else:
         st.write("Word cloud image not found for this colour.")
 
-st.markdown("---")
-
 # --- Section: Recommendations ---
-with st.expander("💡 Recommendations Based on Selected Colour", expanded=False):
+with st.expander("💡 Recommendations Based on Selected Colour", expanded=True):
     st.write(f"Recommendations for **{hex_to_name[selected_colour]}**:")
 
     # Define your recommendations dictionary by colour and category
     recommendations = {
-        'red': {
-            'fashion': "Your fashion recommendation for red here.",
-            'interior_design': "Your interior design recommendation for red here.",
-            'data_analysis': "Your data analysis tip for red here.",
-            'branding': "Your branding advice for red here."
-        },
-        'orange': {
-            'fashion': "Orange fashion rec here.",
-            'interior_design': "Orange interior rec here.",
-            'data_analysis': "Orange data analysis tip here.",
-            'branding': "Orange branding advice here."
-        },
-        # ... repeat for all colours
-        'magenta': {
-            'fashion': "...",
-            'interior_design': "...",
-            'data_analysis': "...",
-            'branding': "..."
-        },
-        'black': {...},
-        'indigo': {...},
-        'purple': {...},
-        'gold': {...},
-        'pink': {...},
-        'brown': {...},
-        'blue': {...},
-        'silver': {...},
-        'yellow': {...},
-        'green': {...},
-        'turquoise': {...},
-        'white': {...},
-        'grey': {...}
+    'red': {
+        'fashion': "Red is bold and energizing — perfect for statement pieces and accessories that demand attention.",
+        'interior_design': "Use red as an accent to create warmth and passion in living spaces like dining rooms or lounges.",
+        'data_analysis': "In data visuals, red signals urgency or decline — use it to highlight critical metrics or warnings.",
+        'branding': "Red evokes excitement and urgency; ideal for brands wanting to convey passion or speed."
+    },
+    'orange': {
+        'fashion': "Orange conveys creativity and vitality — great for casual wear and sporty outfits.",
+        'interior_design': "Incorporate orange in kitchens or playrooms to stimulate energy and social interaction.",
+        'data_analysis': "Orange works well for drawing attention without the intensity of red; useful for moderate alerts.",
+        'branding': "Orange suggests friendliness and enthusiasm; it’s inviting and fun for youthful brands."
+    },
+    'magenta': {
+        'fashion': "Magenta is vibrant and unconventional — ideal for bold fashion statements and creative expression.",
+        'interior_design': "Use magenta sparingly in modern spaces to inject energy and uniqueness.",
+        'data_analysis': "Magenta can highlight creative or exploratory data points, standing out without harshness.",
+        'branding': "Magenta symbolizes innovation and originality — good for brands in tech or arts."
+    },
+    'black': {
+        'fashion': "Black is timeless and sophisticated — perfect for formal wear and versatile styling.",
+        'interior_design': "Use black for contrast and elegance, especially in minimalist or industrial designs.",
+        'data_analysis': "Black is neutral; use it for text and baseline elements to maintain clarity.",
+        'branding': "Black denotes luxury and authority; great for premium or high-end brands."
+    },
+    'indigo': {
+        'fashion': "Indigo is deep and mysterious — perfect for refined, elegant outfits.",
+        'interior_design': "Indigo adds depth to bedrooms and study areas, fostering calm and focus.",
+        'data_analysis': "Indigo is calming and trustworthy; suitable for stable trend indicators.",
+        'branding': "Indigo evokes wisdom and integrity; ideal for educational or corporate brands."
+    },
+    'purple': {
+        'fashion': "Purple signifies royalty and creativity — great for statement pieces and artistic looks.",
+        'interior_design': "Use purple in bedrooms or creative spaces to inspire luxury and imagination.",
+        'data_analysis': "Purple highlights special categories or creative data clusters effectively.",
+        'branding': "Purple conveys luxury and uniqueness; perfect for boutique or niche brands."
+    },
+    'gold': {
+        'fashion': "Gold adds glamour and prestige — ideal for accessories and evening wear.",
+        'interior_design': "Incorporate gold accents to elevate luxury in living or dining rooms.",
+        'data_analysis': "Gold can highlight top performance or premium categories in data.",
+        'branding': "Gold reflects success and quality; suitable for premium, prestigious brands."
+    },
+    'pink': {
+        'fashion': "Pink is playful and gentle — perfect for casual and youthful styles.",
+        'interior_design': "Use pink in nurseries or relaxing spaces to create warmth and comfort.",
+        'data_analysis': "Pink draws attention softly; good for secondary highlights or positive trends.",
+        'branding': "Pink communicates approachability and care; ideal for health or beauty brands."
+    },
+    'brown': {
+        'fashion': "Brown is earthy and reliable — great for casual wear and natural textures.",
+        'interior_design': "Use brown to add warmth and groundedness, especially with wood accents.",
+        'data_analysis': "Brown is neutral and stable; good for background elements and natural data themes.",
+        'branding': "Brown evokes dependability and wholesomeness; suitable for organic or artisanal brands."
+    },
+    'blue': {
+        'fashion': "Blue is calming and trustworthy — perfect for business and casual wear.",
+        'interior_design': "Use blue to create serene environments in bedrooms and offices.",
+        'data_analysis': "Blue represents stability and confidence; excellent for key data points.",
+        'branding': "Blue conveys professionalism and trust; widely used in corporate branding."
+    },
+    'silver': {
+        'fashion': "Silver is sleek and modern — ideal for accessories and futuristic styles.",
+        'interior_design': "Incorporate silver for a high-tech, clean look in kitchens and bathrooms.",
+        'data_analysis': "Silver is neutral yet refined; good for highlighting secondary metrics.",
+        'branding': "Silver symbolizes sophistication and innovation; great for tech brands."
+    },
+    'yellow': {
+        'fashion': "Yellow is cheerful and energetic — great for summer wear and youthful fashion.",
+        'interior_design': "Use yellow to brighten rooms and stimulate creativity, especially in workspaces.",
+        'data_analysis': "Yellow grabs attention gently; good for warnings or positive alerts.",
+        'branding': "Yellow represents optimism and friendliness; ideal for playful or creative brands."
+    },
+    'green': {
+        'fashion': "Green is natural and refreshing — perfect for eco-friendly and casual styles.",
+        'interior_design': "Use green to bring calm and vitality, especially in living rooms and kitchens.",
+        'data_analysis': "Green indicates growth and positive outcomes; ideal for performance metrics.",
+        'branding': "Green communicates sustainability and health; excellent for organic brands."
+    },
+    'turquoise': {
+        'fashion': "Turquoise is vibrant and soothing — great for summer fashion and beachwear.",
+        'interior_design': "Use turquoise to evoke calm and clarity in bathrooms or creative spaces.",
+        'data_analysis': "Turquoise highlights innovation and fresh ideas in datasets.",
+        'branding': "Turquoise conveys clarity and creativity; suitable for wellness or tech brands."
+    },
+    'white': {
+        'fashion': "White is clean and versatile — perfect for minimalist and summer styles.",
+        'interior_design': "Use white to create spaciousness and simplicity in any room.",
+        'data_analysis': "White is neutral; use as background for clear data presentation.",
+        'branding': "White symbolizes purity and simplicity; ideal for modern, clean brand identities."
+    },
+    'grey': {
+        'fashion': "Grey is sophisticated and neutral — perfect for professional and casual wear.",
+        'interior_design': "Use grey as a calming base or accent in modern interiors.",
+        'data_analysis': "Grey works well for neutral data or secondary information.",
+        'branding': "Grey suggests balance and professionalism; ideal for conservative brands."
     }
+}
 
     # Get the colour name in lowercase (to match your dict keys)
     colour_key = hex_to_name[selected_colour].lower()
@@ -136,7 +198,7 @@ with st.expander("🧾 Show Raw Dataset"):
 
 
 # --- Section: Top 5 Most Common Colours ---
-with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
+with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=False):
     st.write("These are the top 5 colours that appear most frequently in the dataset.")
 
     colour_counts = df['hex'].value_counts().head(5)
