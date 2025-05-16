@@ -8,144 +8,92 @@ Original file is located at
 """
 
 import streamlit as st
-import pandas as pd
-import plotly.graph_objs as go
 import json
-import os
+import re
 
 st.set_page_config(page_title="🎨 Colour Psychology Explorer", layout="centered")
 
-# --- Load Data ---
-
+# --- Load your JSON file with color data ---
+# Assuming you have a file called 'color_data.json' in the same directory
+# that looks like:
+# {
+#   "red": {"Marketing": "...", "Interior Design": "...", "Psychology": "..."},
+#   "yellow": {...},
+#   ...
+# }
 @st.cache_data
-def load_data():
-    return pd.read_csv("color_psychology_data.csv")
-
-df = load_data()
-
-# --- Load usage examples JSON ---
-@st.cache_data
-def load_examples():
-    with open("color_examples.json", "r") as f:
+def load_color_data():
+    with open("color_data.json", "r", encoding="utf-8") as f:
         return json.load(f)
 
-examples = load_examples()
+color_data = load_color_data()
 
-# --- Colour name mapping ---
+# --- Helper function to validate hex code ---
+def is_valid_hex(hex_code):
+    return bool(re.fullmatch(r"#([A-Fa-f0-9]{6})", hex_code.strip()))
+
+# --- Mapping common hex colors to names ---
 hex_to_name = {
-    '#FF0000': 'red', '#FFA500': 'orange', '#FF00FF': 'magenta', '#000000': 'black',
-    '#4B0082': 'indigo', '#800080': 'purple', '#FFD700': 'gold', '#FFC0CB': 'pink',
-    '#A52A2A': 'brown', '#0000FF': 'blue', '#C0C0C0': 'silver', '#FFFF00': 'yellow',
-    '#008000': 'green', '#40E0D0': 'turquoise', '#FFFFFF': 'white', '#808080': 'grey'
+    '#FF0000': 'red',
+    '#FFA500': 'orange',
+    '#FF00FF': 'magenta',
+    '#000000': 'black',
+    '#4B0082': 'indigo',
+    '#800080': 'purple',
+    '#FFD700': 'gold',
+    '#FFC0CB': 'pink',
+    '#A52A2A': 'brown',
+    '#0000FF': 'blue',
+    '#C0C0C0': 'silver',
+    '#FFFF00': 'yellow',
+    '#008000': 'green',
+    '#40E0D0': 'turquoise',
+    '#FFFFFF': 'white',
+    '#808080': 'grey'
 }
 
-available_colours = list(hex_to_name.keys())
-
-# --- Initialize session state ---
-if "selected_color" not in st.session_state:
-    st.session_state.selected_color = None
-
-# --- Title ---
+# --- Streamlit UI ---
 st.title("🎨 Colour Psychology Explorer")
-st.write("Explore emotional associations of colours and visualise their psychological impact.")
+st.write("Enter a hex colour code or pick a colour below to explore its psychology and uses.")
 
-# --- Colour Picker Section ---
+col1, col2 = st.columns([2,1])
 
-st.subheader("🎨 Pick a Colour")
+with col1:
+    user_input = st.text_input("Enter Hex Color Code (e.g. #FF0000)", value="#FF0000")
 
-cols = st.columns(8)
-for i, hex_col in enumerate(available_colours):
-    is_selected = st.session_state.selected_color == hex_col
-    border_style = "3px solid black" if is_selected else "1px solid #ccc"
-    if cols[i % 8].button("", key=hex_col, help=hex_to_name[hex_col],
-                         args=None,
-                         kwargs=None,
-                         ):
-        st.session_state.selected_color = hex_col
-    # Render coloured box with border to indicate selection
-    cols[i % 8].markdown(
-        f"""
-        <div style="
-            background-color: {hex_col};
-            border: {border_style};
-            width: 40px;
-            height: 40px;
-            border-radius: 6px;
-            margin: 0 auto;
-            pointer-events: none;">
-        </div>
-        """, unsafe_allow_html=True
-    )
+with col2:
+    # If user_input is valid hex, use that; else use a default
+    default_color = user_input if is_valid_hex(user_input) else "#FF0000"
+    color_picker = st.color_picker("Pick a Color", value=default_color)
 
-if not st.session_state.selected_color:
-    st.info("Please select a colour above to explore its psychology.")
+# Determine which color to use
+selected_color = user_input.strip() if is_valid_hex(user_input) else color_picker
 
-# --- Display selected colour info ---
+# Show the color swatch preview
+st.markdown("---")
+st.markdown("### Color Preview")
+st.markdown(
+    f'<div style="width:100px; height:100px; background-color:{selected_color}; border:1px solid #ddd;"></div>',
+    unsafe_allow_html=True
+)
 
-if st.session_state.selected_color:
-    selected_hex = st.session_state.selected_color
-    selected_name = hex_to_name[selected_hex]
+# Map selected_color to color name (hex_to_name keys are uppercase)
+selected_color_upper = selected_color.upper()
+color_name = hex_to_name.get(selected_color_upper)
 
-    st.markdown("---")
-    st.write(f"🎯 Selected Colour: **{selected_name.title()}** (`{selected_hex}`)")
+if color_name and color_name in color_data:
+    st.markdown(f"## Insights for **{color_name.title()}**")
 
-    # Pie chart of top 5 colours in dataset
-    with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
-        colour_counts = df['hex'].value_counts().head(5)
-        labels = [hex_to_name.get(c, c).title() for c in colour_counts.index]
-        fig_pie = go.Figure(go.Pie(
-            labels=labels,
-            values=colour_counts.values,
-            marker=dict(colors=colour_counts.index),
-            hoverinfo='label+percent',
-            textinfo='label+value'
-        ))
-        st.plotly_chart(fig_pie, use_container_width=True)
-        st.markdown("Hover over the segments to see details.")
+    st.markdown("### Marketing")
+    st.write(color_data[color_name].get("Marketing", "wip"))
 
-    st.markdown("---")
+    st.markdown("### Interior Design")
+    st.write(color_data[color_name].get("Interior Design", "wip"))
 
-    # Word cloud image section
-    with st.expander("☁️ Emotional Word Cloud", expanded=True):
-        wordcloud_path = os.path.join("wordclouds", f"{selected_name}.png")
-        if os.path.exists(wordcloud_path):
-            st.image(wordcloud_path, caption=f"Word Cloud for {selected_name.title()}")
-        else:
-            st.warning("Word cloud image not found for this colour.")
-
-    st.markdown("---")
-
-    # Examples section (Marketing, Interior Design, Psychology)
-    with st.expander(f"🧪 Examples of {selected_name.title()} in Use", expanded=True):
-        marketing = examples.get(selected_name, {}).get("Marketing", "wip")
-        interior = examples.get(selected_name, {}).get("Interior Design", "wip")
-        psychology = examples.get(selected_name, {}).get("Psychology", "wip")
-
-        st.markdown("### 💼 Marketing")
-        st.write(marketing)
-
-        st.markdown("### 🏡 Interior Design")
-        st.write(interior)
-
-        st.markdown("### 🧠 Psychology")
-        st.write(psychology)
-
+    st.markdown("### Psychology")
+    st.write(color_data[color_name].get("Psychology", "wip"))
 else:
-    st.markdown("---")
-    st.info("Pick a colour above to see examples of its use in marketing, interior design, and psychology.")
-
-# --- About Section ---
-with st.expander("ℹ️ About This Explorer"):
-    st.write(
-        """
-        This tool helps you explore how different colours are psychologically and emotionally perceived.
-        Select a colour to discover its top associated emotions and see visual word clouds representing these associations.
-        """
-    )
-
-# --- Raw Data Section ---
-with st.expander("🧾 Show Raw Dataset"):
-    st.dataframe(df)
+    st.info("Pick a valid colour from the picker or enter a valid hex code like #FF0000 to see insights!")
 
 # --- Footer ---
 st.markdown("---")
