@@ -1,0 +1,82 @@
+{
+    "red": {
+        "Marketing": "Red evokes urgency and excitement, often used in clearance sales and food branding. wip",
+        "Interior Design": "Red energizes a space, adds warmth, and can stimulate appetite, but should be balanced carefully. wip",
+        "Psychology": "Red is associated with strong emotions such as love, passion, danger, and increased heart rate. wip"
+    },
+    "orange": {
+        "Marketing": "Orange conveys friendliness and enthusiasm, often used to encourage impulsive buying. wip",
+        "Interior Design": "Orange adds vibrancy and warmth, perfect for social areas and creative spaces. wip",
+        "Psychology": "Orange stimulates activity and appetite, evokes excitement and cheerfulness. wip"
+    },
+    "magenta": {
+        "Marketing": "Magenta stands out as bold and creative, often associated with innovation and individuality. wip",
+        "Interior Design": "Magenta brings a playful, artistic vibe and can energize rooms without overwhelming. wip",
+        "Psychology": "Magenta stimulates creativity and emotional balance, linked with compassion and kindness. wip"
+    },
+    "black": {
+        "Marketing": "Black represents luxury, sophistication, and authority, often used for premium products. wip",
+        "Interior Design": "Black adds elegance and depth but can make spaces feel smaller if overused. wip",
+        "Psychology": "Black is linked to power, mystery, and formality, but can also evoke sadness. wip"
+    },
+    "indigo": {
+        "Marketing": "Indigo suggests wisdom and spirituality, used in branding that wants to evoke trust and integrity. wip",
+        "Interior Design": "Indigo creates a calm, contemplative atmosphere, ideal for bedrooms or meditation spaces. wip",
+        "Psychology": "Indigo is associated with intuition, perception, and deep concentration. wip"
+    },
+    "purple": {
+        "Marketing": "Purple signals luxury, creativity, and royalty, common in beauty and anti-aging products. wip",
+        "Interior Design": "Purple adds sophistication and calm, often used in bedrooms or lounges. wip",
+        "Psychology": "Purple encourages imagination and spirituality, linked to introspection. wip"
+    },
+    "gold": {
+        "Marketing": "Gold symbolizes wealth, success, and prestige, often used for premium and celebratory products. wip",
+        "Interior Design": "Gold accents add warmth and opulence, perfect for luxurious spaces. wip",
+        "Psychology": "Gold evokes feelings of richness, wisdom, and grandeur. wip"
+    },
+    "pink": {
+        "Marketing": "Pink appeals to femininity, romance, and playfulness, popular in cosmetics and children\u2019s products. wip",
+        "Interior Design": "Pink creates softness and warmth, often used in bedrooms and nurseries. wip",
+        "Psychology": "Pink is calming and nurturing, linked with love and compassion. wip"
+    },
+    "brown": {
+        "Marketing": "Brown conveys reliability, stability, and wholesomeness, used in natural and organic branding. wip",
+        "Interior Design": "Brown provides warmth and earthiness, great for cozy and rustic interiors. wip",
+        "Psychology": "Brown is grounded, associated with comfort and security. wip"
+    },
+    "blue": {
+        "Marketing": "Blue builds trust and dependability, common in tech, healthcare, and finance brands. wip",
+        "Interior Design": "Blue induces calm and serenity, ideal for bedrooms and offices. wip",
+        "Psychology": "Blue is calming and promotes focus and productivity. wip"
+    },
+    "silver": {
+        "Marketing": "Silver suggests modernity, sophistication, and high-tech, often used in electronics and luxury goods. wip",
+        "Interior Design": "Silver adds sleekness and shine, great for contemporary styles. wip",
+        "Psychology": "Silver is associated with innovation, clarity, and elegance. wip"
+    },
+    "yellow": {
+        "Marketing": "Yellow grabs attention and communicates optimism and happiness, used in promotions and food branding. wip",
+        "Interior Design": "Yellow brightens spaces and stimulates mental activity, great for kitchens and offices. wip",
+        "Psychology": "Yellow is linked to cheerfulness and energy but can cause eye strain if overused. wip"
+    },
+    "green": {
+        "Marketing": "Green symbolizes health, growth, and eco-friendliness, common in organic and wellness products. wip",
+        "Interior Design": "Green creates a restful and natural environment, perfect for living rooms and bedrooms. wip",
+        "Psychology": "Green promotes balance, harmony, and renewal. wip"
+    },
+    "turquoise": {
+        "Marketing": "Turquoise evokes clarity, calmness, and creativity, often used in travel and healthcare branding. wip",
+        "Interior Design": "Turquoise adds freshness and vibrancy, ideal for bathrooms and creative spaces. wip",
+        "Psychology": "Turquoise is calming, promoting emotional balance and communication. wip"
+    },
+    "white": {
+        "Marketing": "White represents purity, simplicity, and cleanliness, often used in healthcare and tech. wip",
+        "Interior Design": "White creates spaciousness and freshness, used widely in minimalistic designs. wip",
+        "Psychology": "White conveys peace, innocence, and new beginnings. wip"
+    },
+    "grey": {
+        "Marketing": "Grey communicates neutrality, professionalism, and sophistication, common in corporate branding. wip",
+        "Interior Design": "Grey provides a versatile neutral backdrop, adding elegance without distraction. wip",
+        "Psychology": "Grey can be calming but sometimes perceived as dull or emotionless. wip"
+    }
+}
