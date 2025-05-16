@@ -65,11 +65,16 @@ with st.expander("🔍 Top 5 Most Common Colours in Dataset", expanded=True):
 st.markdown("---")
 
 # --- Section: Word Cloud ---
-with st.expander("☁️ Emotional Word Cloud", expanded=False):
+import os
+
+with st.expander("☁️ Emotional Word Cloud", expanded=True):
     st.write("Visual representation of emotional words associated with the selected colour.")
-    try:
-        st.image(f"wordclouds/{selected_colour}.png", caption=f"Word cloud for {hex_to_name[selected_colour]}")
-    except FileNotFoundError:
+    colour_name = hex_to_name[selected_colour].lower()
+    filename = f"wordclouds/{colour_name}.png"
+
+    if os.path.exists(filename):
+        st.image(filename, caption=f"Word cloud for {hex_to_name[selected_colour]}")
+    else:
         st.write("Word cloud image not found for this colour.")
 
 st.markdown("---")
