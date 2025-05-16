@@ -12,6 +12,15 @@ import pandas as pd
 import plotly.graph_objs as go
 
 st.set_page_config(page_title="🎨 Colour Psychology Explorer", layout="centered")
+st.markdown("""
+    <style>
+    .streamlit-expanderHeader {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # --- Load data ---
 @st.cache_data
@@ -182,10 +191,10 @@ with st.expander("💡 Recommendations Based on Selected Colour", expanded=True)
 
     if colour_key in recommendations:
         recs = recommendations[colour_key]
-        st.markdown(f"### Fashion\n{recs.get('fashion', 'No recommendation available.')}")
-        st.markdown(f"### Interior Design\n{recs.get('interior_design', 'No recommendation available.')}")
-        st.markdown(f"### Data Analysis\n{recs.get('data_analysis', 'No recommendation available.')}")
-        st.markdown(f"### Branding\n{recs.get('branding', 'No recommendation available.')}")
+        st.markdown(f"### 👚Fashion\n{recs.get('fashion', 'No recommendation available.')}")
+        st.markdown(f"### 🏠Interior Design\n{recs.get('interior_design', 'No recommendation available.')}")
+        st.markdown(f"### 📊Data Analysis\n{recs.get('data_analysis', 'No recommendation available.')}")
+        st.markdown(f"### ✨Branding\n{recs.get('branding', 'No recommendation available.')}")
     else:
         st.write("No recommendations available for this colour yet.")
 
